@@ -175,11 +175,6 @@
     .energizing-description {
         font-size: 1rem;
     }
-    
-    /* Ensure video covers full section on mobile */
-    .energizing-video video {
-        min-height: 120vh;
-    }
 }
 
 @media (max-width: 480px) {

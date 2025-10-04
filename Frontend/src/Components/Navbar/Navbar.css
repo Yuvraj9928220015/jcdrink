@@ -527,7 +527,9 @@
      transform: translateY(-2px);
      box-shadow: 0 8px 25px #8b5cf666;
  }
-
+.cart-item-category {
+     color: #8b5cf6;
+}
  .continue-shopping-btn {
      background: transparent;
      color: #8b5cf6;

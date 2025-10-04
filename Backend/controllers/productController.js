@@ -14,6 +14,7 @@ exports.getProducts = async (req, res) => {
     }
 };
 
+
 exports.addProduct = async (req, res) => {
     try {
 
