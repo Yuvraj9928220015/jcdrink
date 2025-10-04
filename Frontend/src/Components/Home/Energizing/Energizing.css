@@ -1,0 +1,224 @@
+/* Main Container */
+.energizing {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Background Video Styles - FIXED */
+.energizing-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.energizing-video video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Content Container */
+.energizing-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Row Layout */
+.energizing-row {
+    display: flex;
+    width: 100%;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Column Layout (50-50) */
+.energizing-col-6 {
+    flex: 1;
+    min-width: 0;
+}
+
+.energizing-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Content Box */
+.energizing-content-box {
+    border-radius: 15px;
+    padding: 40px;
+    color: white;
+}
+
+/* Typography */
+.energizing-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.energizing-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #ffffffe6;
+}
+
+/* Features */
+.energizing-features {
+    margin-bottom: 30px;
+}
+
+.energizing-feature {
+    margin-bottom: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.energizing-feature:last-child {
+    border-bottom: none;
+}
+
+.energizing-feature h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #4ecdc4;
+    font-weight: 600;
+}
+
+.energizing-feature p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Button */
+.energizing-btn {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.energizing-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px #ff6b6b4d;
+    background: linear-gradient(45deg, #ff5252, #26d0ce);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .energizing-container {
+        padding: 50px 20px;
+    }
+    
+    .energizing-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .energizing-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .energizing-container {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+    
+    .energizing {
+        min-height: auto;
+    }
+
+    .energizing-content-box {
+        padding: 30px 25px;
+    }
+
+    .energizing-title {
+        font-size: 2.2rem;
+    }
+
+    .energizing-description {
+        font-size: 1rem;
+    }
+    
+    /* Ensure video covers full section on mobile */
+    .energizing-video video {
+        min-height: 120vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .energizing-title {
+        font-size: 1.8rem;
+    }
+
+    .energizing-content-box {
+        padding: 25px 20px;
+    }
+
+    .energizing-btn {
+        width: 100%;
+        padding: 12px 20px;
+    }
+    
+    .energizing-feature h3 {
+        font-size: 1.1rem;
+    }
+    
+    .energizing-feature p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for smooth entrance */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.energizing-content-box,
+.energizing-image-box {
+    animation: fadeInUp 0.8s ease-out;
+}

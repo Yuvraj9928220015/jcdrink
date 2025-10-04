@@ -1,0 +1,17 @@
+.Blog {
+    padding: 50px 0px;
+    background: linear-gradient(135deg, #0f0f23 0%, #131322 50%, #0b1120 100%);
+}
+.section-heading {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}

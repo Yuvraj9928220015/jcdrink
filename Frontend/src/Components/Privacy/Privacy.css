@@ -1,0 +1,103 @@
+.Privacy {
+    min-height: 100vh;
+    color: white;
+    overflow-y: hidden;
+    padding: 80px 0px;
+    position: relative;
+    background: radial-gradient(circle, #b31515ec, #2e8a84, #33848d, #af9b26, #bb6d1b, #da3c3c, #393577a8);
+    background-size: 400% 400%;
+    animation: radialShift 20s ease infinite;
+}
+
+@keyframes radialShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 100% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    75% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.Privacy.slow-animation {
+    animation: radialShift 20s ease infinite;
+}
+
+.Privacy.fast-animation {
+    animation: radialShift 5s ease infinite;
+}
+
+.Privacy.radial-zoom {
+    background: radial-gradient(circle, #b31515ec, #2e8a84, #33848d, #af9b26, #bb6d1b, #da3c3c, #393577a8);
+    background-size: 300% 300%;
+    animation: radialZoom 12s ease infinite;
+}
+
+@keyframes radialZoom {
+    0% {
+        background-size: 300% 300%;
+        background-position: center;
+    }
+
+    50% {
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    100% {
+        background-size: 300% 300%;
+        background-position: center;
+    }
+}
+
+.Privacy.radial-pulse {
+    background: radial-gradient(circle, #b31515ec, #2e8a84, #33848d, #af9b26, #bb6d1b, #da3c3c, #393577a8);
+    background-size: 150% 150%;
+    animation: radialPulse 12s ease infinite;
+}
+
+@keyframes radialPulse {
+    0% {
+        background-position: 50% 50%;
+        background-size: 200% 200%;
+    }
+
+    50% {
+        background-position: 50% 50%;
+        background-size: 400% 400%;
+    }
+
+    100% {
+        background-position: 50% 50%;
+        background-size: 200% 200%;
+    }
+}
+
+
+#Privacy-Policy {
+    min-width: 1600px;
+}
+
+
+.Privacy-Policy-title {
+    font-size: 30px;
+    padding: 20px 0px;
+}
+
+.Privacy-Policy-des {
+    letter-spacing: 1px;
+    font-size: 17px;
+    line-height: 29px;
+}

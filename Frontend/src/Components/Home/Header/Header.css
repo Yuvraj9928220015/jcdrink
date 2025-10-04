@@ -1,0 +1,395 @@
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-image: url(/public/Main-Banner-5.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    object-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #00000011;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Hero Text */
+.hero-text {
+    position: absolute;
+    top: 15%;
+    /* left: 50%; */
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.hero-title-image {
+    max-width: 100%;
+    height: auto;
+    width: 700px;
+    filter: drop-shadow(2px 2px 8px #0000004d);
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+/* Animation Keyframes */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titleGlow {
+    from {
+        filter: drop-shadow(2px 2px 8px #0000004d);
+        transform: scale(1);
+    }
+
+    to {
+        filter: drop-shadow(4px 4px 16px #00000099);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Watch Button */
+.hero-button {
+    position: absolute;
+    top: 40%;
+    /* left: 50%; */
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: fadeInScale 1s ease-out 1s both;
+}
+
+.watch-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 60px;
+    padding: 16px 40px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+    animation: float 4s ease-in-out infinite;
+
+}
+
+.watch-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transition: left 0.6s ease;
+}
+
+.watch-btn:hover::before {
+    left: 100%;
+}
+
+.watch-btn:active {
+    transform: translateY(-2px) scale(1.05);
+}
+
+.btn-text {
+    font-weight: 900;
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    margin-left: 5px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Bottles Section */
+.hero-bottles {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottles-image {
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 35px #00000066);
+    transition: transform 0.3s ease;
+}
+
+.bottles-image:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .hero-title-image {
+        width: 650px;
+    }
+
+    .bottles-image {
+        height: 80vh;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-title-image {
+        width: 600px;
+    }
+
+    .bottles-image {
+        height: 75vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-title-image {
+        width: 520px;
+    }
+
+    .bottles-image {
+        height: 70vh;
+    }
+
+    .watch-btn {
+        padding: 14px 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-text {
+        top: 10%;
+    }
+
+    .hero-button {
+        top: 30%;
+    }
+
+    .hero-title-image {
+        width: 450px;
+    }
+
+    .bottles-image {
+        height: 65vh;
+    }
+
+    .watch-btn {
+        padding: 16px 40px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-text {
+        top: 8%;
+    }
+
+    .hero-button {
+        top: 25%;
+    }
+
+    .hero-title-image {
+        width: 350px;
+    }
+
+    .bottles-image {
+        height: 60vh;
+    }
+
+    .watch-btn {
+        padding: 14px 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text {
+        top: 5%;
+    }
+
+    .hero-button {
+        top: 20%;
+    }
+
+    .hero-title-image {
+        width: 300px;
+    }
+
+    .bottles-image {
+        height: 55vh;
+    }
+
+    .watch-btn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-title-image {
+        width: 280px;
+    }
+
+    .bottles-image {
+        height: 50vh;
+    }
+
+    .watch-btn {
+        padding: 10px 25px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-text {
+        top: 5%;
+    }
+
+    .hero-button {
+        top: 20%;
+    }
+
+    .hero-title-image {
+        width: 400px;
+    }
+
+    .bottles-image {
+        height: 85vh;
+    }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1600px) {
+    .hero-title-image {
+        width: 800px;
+    }
+
+    .bottles-image {
+        height: 90vh;
+    }
+
+    .watch-btn {
+        padding: 22px 55px;
+        font-size: 1.4rem;
+    }
+}
+
+/* Ultra Wide Screens */
+@media (min-width: 1920px) {
+    .hero-title-image {
+        width: 900px;
+    }
+
+    .bottles-image {
+        height: 100vh;
+    }
+
+    .watch-btn {
+        padding: 16px 40px;
+        font-size: 1.2rem;
+    }
+}
