@@ -87,7 +87,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 992) {
+      if (window.innerWidth > 1200) {
         setIsMobileMenuOpen(false);
         setActiveMobileDropdown(null);
       }

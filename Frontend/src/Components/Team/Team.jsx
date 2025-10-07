@@ -75,7 +75,7 @@ export default function Team() {
                             <div className="ceo-image-container">
                                 <div className="ceo-badge">CEO & Founder</div>
                                 <img
-                                    src="./public/Screenshot.png"
+                                    src="/Screenshot.png"
                                     alt="Darwin Luiz - CEO & Founder"
                                     className="ceo-image"
                                 />

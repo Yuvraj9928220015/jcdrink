@@ -24,7 +24,6 @@ export default function ProductData() {
     });
 
     useEffect(() => {
-        // Check if user is already logged in (session storage)
         const authStatus = sessionStorage.getItem('isAuthenticated');
         if (authStatus === 'true') {
             setIsAuthenticated(true);

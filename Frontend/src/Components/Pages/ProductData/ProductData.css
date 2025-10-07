@@ -875,7 +875,7 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px #667eea1a;
 }
 
 .form-group textarea {
@@ -919,7 +919,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 20px #667eea4d;
 }
 
 .btn-secondary {
@@ -950,7 +950,7 @@ body {
     background: white;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px #00000014;
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
@@ -958,7 +958,7 @@ body {
 
 .productData-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 40px #00000026;
 }
 
 .card-category {

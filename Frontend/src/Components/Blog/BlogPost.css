@@ -4,6 +4,10 @@
     width: 100%;
 }
 
+#Blog-container-Section {
+    max-width: 1500px;
+}
+
 /* Hero Section */
 .about-hero {
     position: relative;
@@ -66,12 +70,13 @@
     animation: fadeIn 1s ease-out 0.5s both;
     text-shadow: 1px 1px 3px #0000004d;
 }
+
 .hidden-wonders-section {
     padding: 40px 0;
     background: #f8f9faea;
     box-shadow: 0 10px 30px #0000001a;
     margin: 60px 0;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
 .wonders-content {
@@ -96,6 +101,7 @@
     line-height: 1.7;
     color: #5a6c7d;
     margin-bottom: 35px;
+    letter-spacing: 1px;
     font-weight: 400;
 }
 
@@ -124,7 +130,7 @@
 
 .main-image {
     flex: 1;
-    border-radius: 20px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 10px 30px #0000001a;
 }
@@ -144,7 +150,7 @@
 
 .side-image {
     flex: 1;
-    border-radius: 15px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 8px 25px #0000001a;
 }
@@ -171,17 +177,6 @@
 }
 
 @media (max-width: 992px) {
-    .row {
-        flex-direction: column;
-        gap: 50px;
-    }
-
-    .col-4,
-    .col-8 {
-        flex: 1;
-        width: 100%;
-    }
-
     .wonders-content {
         text-align: center;
         padding: 20px;
@@ -277,8 +272,8 @@
 }
 
 .section-description {
-    font-size: 1.1rem;
-    color: #5a6c7d;
+    font-size: 1.2rem;
+    color: #ffffff;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -293,7 +288,7 @@
 
 .blog-card {
     background: white;
-    border-radius: 15px;
+    border-radius: 2px;
     overflow: hidden;
     box-shadow: 0 10px 30px #0000001a;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -306,7 +301,7 @@
 
 .blog-image-wrapper {
     position: relative;
-    height: 250px;
+    height: 300px;
     overflow: hidden;
 }
 
@@ -365,6 +360,7 @@
     color: #5a6c7d;
     line-height: 1.6;
     margin-bottom: 25px;
+    letter-spacing: 1px;
     font-size: 0.95rem;
 }
 

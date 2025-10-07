@@ -6,7 +6,7 @@ export default function BlogPost() {
         <>
             <div className="about">
                 {/* Main Content */}
-                <div className="container">
+                <div id='Blog-container-Section' className="container">
                     <section className="blog-section">
                         <div className="section-header">
                             <h2 className="section-heading">Latest Blog</h2>
