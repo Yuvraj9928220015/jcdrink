@@ -103,7 +103,7 @@ export default function Product() {
         <>
             <div className="Product-container">
                 <div className="Product-container-content">
-                    <div className="Product-container-content-title">Products</div>
+                    <div className="about-heading">Products</div>
                     <div className="Product-container-content-des">Browse our collection of amazing products.</div>
                 </div>
                 <div className="products-container">

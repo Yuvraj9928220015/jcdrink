@@ -15,50 +15,51 @@ export default function Energizing() {
                     controls={false}
                 />
             </div>
-            
+
             {/* Content Container */}
             <div className="energizing-container">
                 <div className="energizing-row">
 
                     {/* Content Column */}
-                    <div className="energizing-col-8">
+                    <div className="energizing-col-7">
                         <div className="energizing-content-box">
-                            <h1 className="energizing-title">Energizing Power</h1>
+                            <h1 className="energizing-title">Unleash Your X Factor</h1>
+                            <p className='energizing-Subtitle'>No Limits. No Breaks. Just Pure Power.</p>
                             <p className="energizing-description">
-                                Experience the incredible energy and power that drives innovation 
-                                and transforms possibilities into reality. Our cutting-edge technology 
-                                delivers unmatched performance and reliability.
+                                X Factor Energy Drink isn’t just fuel — it’s ignition.
+                                Packed with explosive caffeine energy,<br />
+                                 B-Vitamins, and a bold, electrifying flavor, it powers your body and sharpens your mind in every sip. Whether you’re crushing workouts, gaming all night, or chasing the next big win, X Factor turns fatigue into fire.
                             </p>
                             <div className="energizing-features">
                                 <div className="energizing-feature">
-                                    <h3>High Performance</h3>
-                                    <p>Optimized for maximum efficiency and speed</p>
+                                    <h3>Ultimate Power Mode</h3>
+                                    <p>Ignite your body, charge your mind, and rule every moment with the unstoppable surge of X Factor.</p>
                                 </div>
                                 <div className="energizing-feature">
-                                    <h3>Reliable Technology</h3>
-                                    <p>Built to last with industry-leading standards</p>
+                                    <h3>Turn Fatigue Into Fire</h3>
+                                    <p>Fuel your grind with explosive caffeine energy and bold flavor that keeps you fierce, focused, and fearless.</p>
                                 </div>
                                 <div className="energizing-feature">
-                                    <h3>Innovation Focus</h3>
-                                    <p>Constantly evolving to meet future needs</p>
+                                    <h3>Feel The X. Live The Power</h3>
+                                    <p>From workouts to wild nights — X Factor gives you the energy to break limits, dominate challenges, and own your zone.</p>
                                 </div>
                             </div>
                             <button className="energizing-btn">Learn More</button>
                         </div>
                     </div>
 
-                    
+
                     {/* Image Column */}
-                    <div className="energizing-col-4">
+                    <div className="energizing-col-5">
                         <div className="energizing-image-box">
-                            <img 
-                                src="/marquee-3.jpg" 
-                                alt="Energizing Image" 
+                            <img
+                                src="/marquee-3.jpg"
+                                alt="Energizing Image"
                                 className="energizing-image"
                             />
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

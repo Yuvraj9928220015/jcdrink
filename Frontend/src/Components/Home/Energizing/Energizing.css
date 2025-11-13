@@ -16,6 +16,10 @@
     overflow: hidden;
 }
 
+.energizing-Subtitle {
+    font-size: 20px;
+}
+
 .energizing-video video {
     position: absolute;
     top: 50%;
@@ -85,6 +89,7 @@
 .energizing-description {
     font-size: 1.1rem;
     line-height: 1.6;
+    letter-spacing: 1px;
     margin-bottom: 30px;
     color: #ffffffe6;
 }
@@ -97,7 +102,7 @@
 .energizing-feature {
     margin-bottom: 20px;
     padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #ffffff1a;
 }
 
 .energizing-feature:last-child {
@@ -105,16 +110,20 @@
 }
 
 .energizing-feature h3 {
-    font-size: 1.3rem;
+    font-size: 23px;
     margin-bottom: 5px;
-    color: #4ecdc4;
+    background: linear-gradient(45deg, #ff6b6b, #27d6cb, #45b7d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 600;
 }
 
 .energizing-feature p {
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffffcc;
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
 /* Button */
@@ -143,7 +152,7 @@
     .energizing-container {
         padding: 50px 20px;
     }
-    
+
     .energizing-title {
         font-size: 2.5rem;
     }
@@ -159,7 +168,7 @@
         padding: 40px 20px;
         min-height: auto;
     }
-    
+
     .energizing {
         min-height: auto;
     }
@@ -190,11 +199,11 @@
         width: 100%;
         padding: 12px 20px;
     }
-    
+
     .energizing-feature h3 {
         font-size: 1.1rem;
     }
-    
+
     .energizing-feature p {
         font-size: 0.9rem;
     }

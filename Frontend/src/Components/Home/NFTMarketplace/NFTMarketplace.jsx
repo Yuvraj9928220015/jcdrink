@@ -41,7 +41,25 @@ export default function NFTMarketplace() {
                     <div className="Refreshing-content">
                         <img src="/Refreshing.png" alt="" />
                         <div className="Refreshing-text">
-                            Welcome to JC Drinks—a world of flavor, energy, and joy in every bottle. We believe refreshment should be simple, fun, and made for everyone. Our drinks are crafted to brighten your day, fuel your moments, and keep you smiling.
+                            JC Drink isn’t just a drink — it’s full-on desi swag in every sip!
+                            From college adda to road trips and gully hangouts — JC Drink brings the ultimate refreshment wala vibe!
+                        </div>
+                        <div id='Refreshing-prag' className="Refreshing-text">
+                            Tangy Orange – Full On Masti, Full On Swag!
+                        </div>
+                        <div id='Refreshing-prag' className="Refreshing-text">
+                            Sweet Lemon – Thandak with a Desi Twist!
+                        </div>
+                        <div id='Refreshing-prag' className="Refreshing-text">
+                            Two Flavours. One Desi Revolution.
+                        </div>
+
+                        <div id='Refreshing-prag' className="Refreshing-text">
+                            Dhamakedaar fizz, chatpata flavour, aur fun ka full blast!
+                        </div>
+                        
+                        <div id='Refreshing-prag' className="Refreshing-text">
+                            Ek sip lo, aur mehsoos karo woh classic refreshment wala sukoon!
                         </div>
                     </div>
 

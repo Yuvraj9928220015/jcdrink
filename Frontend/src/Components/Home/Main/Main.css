@@ -94,8 +94,10 @@
 }
 
 .vitamin-container-des {
-    font-size: 18px;
+    font-size: 22px;
     letter-spacing: 1px;
+    font-weight: 600;
+    text-transform: capitalize;
 }
 
 .vitamin-card {

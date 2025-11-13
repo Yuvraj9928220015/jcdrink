@@ -150,7 +150,7 @@ const Navbar = () => {
                     <li><a href="/About">About</a></li>
                     <li><a href="/Product">Product</a></li>
                     <li><a href="/Team">Team</a></li>
-                    <li><a href="/BlogPost">Blog</a></li>
+                    {/* <li><a href="/BlogPost">Blog</a></li> */}
                     <li><a href="/Contact">Contact Us</a></li>
                   </ul>
                 </div>

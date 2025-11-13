@@ -6,10 +6,10 @@ export default function Nutrition() {
             <div className="Nutrition">
                 <div className="Energizing-container-main">
                     <div className="Energizing-container-main-title">
-                        Nutrition That Packs a Punch!
+                        Cola Chilled Taste the Moment.
                     </div>
                     <div className="Energizing-container-main-des">
-                        Discover the perfect blend of taste and nutrition in every sip
+                        Crisp bubbles, rich cola flavor, and a cool that brings people together — every sip made to refresh your world.
                     </div>
                 </div>
 
@@ -29,23 +29,23 @@ export default function Nutrition() {
 
                         <div data-aos="fade-right" className="col-lg-7 col-md-7 col-sm-12 col-12">
                             <div className="Nutrition-Box">
+
+                                <div className="Nutrition-Box-title">
+                                    {/* <span className="title-word">citrus</span>
+                                    <span className="title-word highlight">blast</span>
+                                    <span className="title-word">flavor</span> */}
+                                    <span className='title-word'>Taste Jo Kare Cool Feel Jo Ho Rule</span>
+                                </div>
+
+                                <div className="Nutrition-Box-Prag">
+                                    Experience the refreshing taste of Cola Chilled — a smooth, bold cola with crisp fizz that revitalizes your senses and refreshes your day
+                                </div>
+
                                 <div className="Nutrition-Box-Subtitle">
                                     <button className="subtitle-btn">
                                         <span>Nutrition</span>
                                         <div className="btn-shine"></div>
                                     </button>
-                                </div>
-
-                                <div className="Nutrition-Box-title">
-                                    <span className="title-word">citrus</span>
-                                    <span className="title-word highlight">blast</span>
-                                    <span className="title-word">flavor</span>
-                                </div>
-
-                                <div className="Nutrition-Box-Prag">
-                                    Experience the ultimate energy boost with our carefully crafted citrus blend.
-                                    Packed with essential nutrients and natural flavors, this refreshing drink
-                                    delivers sustained energy and incredible taste in every serving.
                                 </div>
 
                                 <div className="nutrition-stats">
@@ -92,11 +92,6 @@ export default function Nutrition() {
                                                 <div className="card-glow"></div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div className="disclaimer">
-                                        <div className="disclaimer-icon">ℹ️</div>
-                                        <span>No artificial drama – just bold taste, fizz, and fun. </span>
                                     </div>
                                 </div>
 

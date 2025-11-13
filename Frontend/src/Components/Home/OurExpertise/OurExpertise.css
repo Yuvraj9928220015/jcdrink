@@ -47,28 +47,26 @@
     align-items: center;
 }
 
-.Energizing-container-main-title {
-    font-size: 3rem;
-    font-weight: 800;
-    background-color: white;
+.Our-Energizing-container-main-title {
+    font-size: 40px;
+    font-weight: 600; 
+    color: white;
     text-align: center;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: 20px;
     position: relative;
-    animation: titleGlow 3s ease-in-out infinite alternate;
+    /* animation: titleGlow 3s ease-in-out; */
 }
 
 .Energizing-container-main-des {
     text-align: center;
-    color: #ffffffb3;
+    color: #ffffffe5;
     font-size: 1.2rem;
     /* margin-bottom: 3rem; */
     padding-bottom: 40px;
     opacity: 0;
+    text-transform: capitalize;
     transform: translateY(30px);
     animation: descriptionFadeIn 1s ease forwards 0.3s;
 }
@@ -330,7 +328,7 @@ h2.aos-init.aos-animate {
 }
 
 .intro-text {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.5;
     letter-spacing: 1px;
     color: #ffffffb3;
@@ -578,7 +576,7 @@ h2.aos-init.aos-animate {
         font-size: 36px;
     }
 
-    .Energizing-container-main-title {
+    .Our-Energizing-container-main-title {
         font-size: 1.6rem;
     }
 }
@@ -608,7 +606,7 @@ h2.aos-init.aos-animate {
         font-size: 32px;
     }
 
-    .Energizing-container-main-title {
+    .Our-Energizing-container-main-title {
         font-size: 1rem;
     }
 }

@@ -126,8 +126,8 @@ const Main = () => {
 
     return (
         <div className="vitamin-container">
-            <div className="vitamin-container-title">Product</div>
-            <div className="vitamin-container-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, explicabo.</div>
+            <div className="vitamin-container-title">Dive Into Our Flavors</div>
+            <div className="vitamin-container-des">Pick the flavor that matches your vibe.</div>
 
             <div className="cards-grid">
                 {Object.entries(productData).map(([productId, product]) =>

@@ -100,7 +100,8 @@
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
+    text-transform: uppercase;
     font-weight: 600;
     color: #ffffff;
     margin-bottom: 20px;
@@ -111,8 +112,24 @@
     font-size: 1.2rem;
     color: #ffffff;
     line-height: 1.8;
-    max-width: 600px;
     margin: 0 auto;
+}
+
+.Team-heading {
+    font-weight: 600;
+    text-align: center;
+}
+
+.experience-section-subtitle {
+    color: #444;
+    padding-bottom: 20px;
+    font-size: 21px;
+}
+
+.Team-section-description {
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 1px;
 }
 
 /* CEO Section */
@@ -175,13 +192,13 @@
     font-size: 1.1rem;
     color: #555;
     line-height: 1.8;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .social-icons {
     display: flex;
     gap: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .social-icon {
@@ -255,7 +272,7 @@
 }
 
 .experience-text {
-    font-size: 1rem;
+    font-size: 18px;
     color: #444;
     line-height: 1.7;
     font-weight: 500;

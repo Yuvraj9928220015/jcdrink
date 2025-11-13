@@ -8,14 +8,14 @@ function OurExpertise() {
                     data-aos-duration="3000" className="container">
                     <div className="Energizing-container-main">
                         <div
-                            className="Energizing-container-main-title"
+                            className="Our-Energizing-container-main-title"
                         >
-                            Our Expertise – We Bring the Spark!
+                            Desi Vibes, Global Swag — That’s Our Refreshment Game
                         </div>
                         <div
                             className="Energizing-container-main-des"
                         >
-                            We don’t just make drinks. We create vibes you can taste.
+                            We don’t sell drinks — we serve swag
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@ function OurExpertise() {
                         <div
                             data-aos="fade-right"
                             data-aos-duration="1000"
-                            data-aos-delay="300"
+                            data-aos-delay="100"
                             className="left-section"
                         >
                             <div className="cta-card animated-card">
@@ -41,22 +41,13 @@ function OurExpertise() {
                         <div className="right-section">
                             <div className="content-card">
                                 <div className="section-header">
-                                    <span
-                                        className="expertise-badge"
-                                        data-aos="fade-left"
-                                        data-aos-duration="800"
-                                        data-aos-delay="400"
-                                    >
-                                        <span className="badge-icon">◉</span>
-                                        Our Expertise
-                                    </span>
-
                                     <h2
                                         data-aos="fade-left"
                                         data-aos-duration="1000"
                                         data-aos-delay="500"
                                     >
-                                        Data Driven Strategies, <span>Measurable Results</span>
+                                        Why JC Drink Hits Different!
+                                        {/* Data Driven Strategies, <span>Measurable Results</span> */}
                                     </h2>
 
                                     <p
@@ -65,8 +56,10 @@ function OurExpertise() {
                                         data-aos-duration="800"
                                         data-aos-delay="600"
                                     >
-                                        At Marko, we specialize in crafting innovative digital marketing strategies that drive
-                                        real business growth. Our expertise ensures
+                                        Because we don’t just refresh — we redefine chill.
+                                        At JC Drink, we’re not here to play safe — we’re here to shake things up!
+                                        We’ve taken desi flavours, added a blast of fizz, and packed it with full-on swag energy.
+                                        From the first sip to the last drop, JC Drink isn’t just about quenching thirst — it’s about owning the vibe.
                                     </p>
                                 </div>
 
@@ -75,33 +68,29 @@ function OurExpertise() {
                                         className="services-section"
                                         data-aos="fade-up"
                                         data-aos-duration="1000"
-                                        data-aos-delay="700"
+                                        data-aos-delay="300"
                                     >
-                                        <h3>What We Do Best</h3>
+                                        <h3>Why We Are Best ?</h3>
                                         <ul className="services-list">
                                             <li className="service-item" data-service-delay="0">
                                                 <span className="service-icon">◉</span>
-                                                Flavor Revolution – Bold, crazy, and unforgettable flavors that scream "One More Sip!"
+                                                Flavours with Full Tashan: From chatpata Tangy Orange to thanda Sweet Lemon — every sip hits different! Pure energy + attitude in a bottle.
                                             </li>
                                             <li className="service-item" data-service-delay="1">
                                                 <span className="service-icon">◉</span>
-                                                Top-Notch Quality – Only the freshest, finest stuff goes into your bottle. No compromise. Ever.
+                                                Fizz So Fine, You’ll Feel It! Smooth, fizzy, aur full premium feels — ek sip, aur thandak seedha dil tak!
                                             </li>
                                             <li className="service-item" data-service-delay="2">
                                                 <span className="service-icon">◉</span>
-                                                Made for the Youth – Energy, style, and fun packed in every fizz.
+                                                For the Youth, By the Swaglords: Trendy, bold, and 100% desi — JC Drink is your official chill partner-in-crime!
                                             </li>
                                             <li className="service-item" data-service-delay="3">
                                                 <span className="service-icon">◉</span>
-                                                Always On Point – Same great taste, every single time – no “good batch, bad batch” drama.
+                                                Every Sip Full Celebration Mode: Chill scenes, long drives, ya gully vibes — JC Drink turns every hangout into a total vibe fest!
                                             </li>
                                             <li className="service-item" data-service-delay="4">
                                                 <span className="service-icon">◉</span>
-                                                Desi + Global Mix – Flavors that connect with every Indian heart but feel world-class.
-                                            </li>
-                                            <li className="service-item" data-service-delay="5">
-                                                <span className="service-icon">◉</span>
-                                                Planet Friendly – Cool drinks, cooler planet. 100% recyclable love for Mother Earth.
+                                               India’s Way to Chill: From gully corners to glam nights — JC Drink is how the new India stays cool, one sip, one vibe, one smile at a time!
                                             </li>
                                         </ul>
                                     </div>

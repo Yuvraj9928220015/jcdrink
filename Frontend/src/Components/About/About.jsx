@@ -49,7 +49,7 @@ export default function About() {
                     {/* Mission & Vision Section */}
                     <div className="mission-vision-section">
                         <div className="mission-card">
-                            <h3 className="section-title">Our Mission</h3>
+                            <h3 className="about-title">Our Mission</h3>
                             <p className="section-text">
                                 To deliver safe, affordable, and flavorful beverages that cater to the diverse tastes of Indian
                                 consumers — from bustling cities to remote villages.
@@ -57,7 +57,7 @@ export default function About() {
                         </div>
 
                         <div className="vision-card">
-                            <h3 className="section-title">Our Vision</h3>
+                            <h3 className="about-title">Our Vision</h3>
                             <p className="section-text">
                                 To become a household name across India by offering a range of beverages that combine
                                 traditional flavors with modern standards of quality and hygiene.
@@ -67,7 +67,7 @@ export default function About() {
 
                     {/* Target Audience Section */}
                     <div className="target-audience-section">
-                        <h3 className="section-title">Target Audience</h3>
+                        <h3 className="about-title">Target Audience</h3>
                         <p className="section-text">
                             We proudly serve both rural and urban markets across India, offering products that are not
                             only refreshing and tasty but also accessible and economical. From street-side vendors to
@@ -77,7 +77,7 @@ export default function About() {
 
                     {/* Why Choose Us Section */}
                     <div className="why-choose-us-section">
-                        <h3 className="section-title">Why Choose Us</h3>
+                        <h3 className="about-title">Why Choose Us</h3>
                         <div className="features-grid">
                             <div className="feature-card">
                                 <h4 className="feature-title">Affordable for Every Indian</h4>
@@ -137,14 +137,6 @@ export default function About() {
                                     consumers and the environment.
                                 </p>
                             </div>
-                            <div className="feature-card">
-                                <h4 className="feature-title">Consistent Quality, Every Bottle </h4>
-                                <p className="feature-text">
-                                    Each batch goes through strict quality control checks so that you get the same great taste,
-                                    every time. Our bottles and cans are sealed with high-grade tamper-evident caps to prevent
-                                    contamination or leakage.
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -152,21 +144,22 @@ export default function About() {
                 {/* Cold Drinks Section */}
                 <section className="drinks-section">
                     <div className="about-content-header">
-                        <h2 className="about-heading">Cold Drinks</h2>
+                        <h2 className="about-heading">Refreshments</h2>
                         <p className="about-description">
-                            Discover our refreshing range of cold beverages crafted with care and precision
-                            to deliver the perfect taste experience for every Indian palate.
+                            Sip. Chill. Repeat. Explore our range of bold, refreshing drinks crafted to hit the perfect taste every time and keep your vibe on point
                         </p>
                     </div>
 
                     <div className="drinks-grid">
                         <div className="drink-card">
                             <div className="drink-image-wrapper">
-                                <img src="https://i.pinimg.com/736x/ec/82/1c/ec821c579cd0072606556764166e73a9.jpg" alt="Fresh Orange Juice" />
+                                <img src="marquee-2.jpg" alt="Fresh Orange Juice" />
                                 <div className="drink-overlay">
                                     <div className="drink-overlay-content">
-                                        <h3>Fresh Orange Juice</h3>
-                                        <p>Pure, vitamin-rich orange juice squeezed fresh daily for maximum flavor and nutrition.</p>
+                                        <h3>Cola & Sweet Lemon</h3>
+                                        <p>Thoda cola, thoda lemon,
+                                            Full desi blast!
+                                            Fun, swag aur ultimate refreshment</p>
                                         <button className="drink-btn">
                                             <span>Learn More</span>
                                             <span className="btn-icon">→</span>
@@ -178,11 +171,13 @@ export default function About() {
 
                         <div className="drink-card">
                             <div className="drink-image-wrapper">
-                                <img src="https://i.pinimg.com/736x/24/6d/c7/246dc7a3e8702f0caa31a034b677dad9.jpg" alt="Tropical Blend" />
+                                <img src="marquee-3.jpg" alt="Tropical Blend" />
                                 <div className="drink-overlay">
                                     <div className="drink-overlay-content">
-                                        <h3>Tropical Blend</h3>
-                                        <p>Exotic mix of tropical fruits creating the perfect balance of sweet and tangy flavors.</p>
+                                        <h3>X Factor</h3>
+                                        <p>Kickstart your vibe, full X Factor mode!
+                                            Energy ka blast, swag ka twist.
+                                            Sip karo, duniya ko beat karo</p>
                                         <button className="drink-btn">
                                             <span>Learn More</span>
                                             <span className="btn-icon">→</span>
@@ -194,11 +189,13 @@ export default function About() {
 
                         <div className="drink-card">
                             <div className="drink-image-wrapper">
-                                <img src="https://i.pinimg.com/736x/a0/22/c5/a022c5028f206fbf6ee444bcda369ccd.jpg" alt="Citrus Mint" />
+                                <img src="marquee-4.jpg" alt="Citrus Mint" />
                                 <div className="drink-overlay">
                                     <div className="drink-overlay-content">
-                                        <h3>Citrus Mint</h3>
-                                        <p>Refreshing citrus blend with fresh mint leaves for a cooling and invigorating experience.</p>
+                                        <h3>Tangy Orange</h3>
+                                        <p>Orange ka tadka, full-on swag!
+                                            Sip karo, chill karo, vibe banao.
+                                            Tangy hai boss, masti ka dose</p>
                                         <button className="drink-btn">
                                             <span>Learn More</span>
                                             <span className="btn-icon">→</span>

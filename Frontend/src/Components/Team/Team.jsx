@@ -61,17 +61,14 @@ export default function Team() {
                     <div className="main-content">
                         {/* Meet Our Team Section */}
                         <div className="section-header">
-                            <h2 className="section-title">Just Cool Our Team</h2>
-                            <p className="section-description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut<br />
-                                spelleras tellus luctus neullamcorper mattis, lorem pibus leo dictu.
+                            <h1 className="Team-heading">Our Team</h1>
+                            <p className="Team-section-description">
+                                Meet the minds behind our innovation and success.
                             </p>
                         </div>
 
                         {/* CEO Section */}
-                        <div data-aos="fade-right"
-                            data-aos-offset="100"
-                            data-aos-easing="ease-in-sine" className="ceo-section">
+                        <div data-aos="fade-zoom-in" className="ceo-section">
                             <div className="ceo-image-container">
                                 <div className="ceo-badge">CEO & Founder</div>
                                 <img
@@ -83,9 +80,7 @@ export default function Team() {
                             <div className="ceo-content">
                                 <h2 className="ceo-name"> Shree Balaji Foods </h2>
                                 <p className="ceo-description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-                                    ut elit tetas tellus luctus non corpor mat is pulvinar pibus leo dictu
-                                    ut ut tur luco lamco virput niste, lorem impor fer dese amet taxen.
+                                    Since establishing the company in 2012, Mr. Rajesh Sadhwani, our CEO & Founder, has demonstrated unwavering dedication and vision in building a brand that stands for quality, innovation, and excellence. His relentless commitment to growth, attention to detail, and entrepreneurial spirit have been the driving forces behind the company’s expansion across urban and rural markets in PAN India.
                                 </p>
                                 <div className="social-icons">
                                     <div className="social-icon">
@@ -101,30 +96,31 @@ export default function Team() {
 
                                 <div className="experience-section">
                                     <h3>Mr. Rajesh Sadhwani </h3>
+                                    <div className='experience-section-subtitle'>Under his leadership:</div>
                                     <div className="experience-points">
                                         <div className="experience-point">
                                             <div className="check-icon">
                                                 <Check size={14} />
                                             </div>
-                                            <span className="experience-text">Established: 2012  </span>
+                                            <span className="experience-text">Strategic planning and innovation have continually strengthened the brand. </span>
                                         </div>
                                         <div className="experience-point">
                                             <div className="check-icon">
                                                 <Check size={14} />
                                             </div>
-                                            <span className="experience-text">Industry: Beverage Manufacturing</span>
+                                            <span className="experience-text">The team is inspired by his work ethic, perseverance, and passion.</span>
                                         </div>
                                         <div className="experience-point">
                                             <div className="check-icon">
                                                 <Check size={14} />
                                             </div>
-                                            <span className="experience-text">Head Office: RIICO Industrial Area, Ajmer, Rajasthan (India) </span>
+                                            <span className="experience-text">Customer satisfaction and product excellence remain at the heart of every decision. </span>
                                         </div>
                                         <div className="experience-point">
                                             <div className="check-icon">
                                                 <Check size={14} />
                                             </div>
-                                            <span className="experience-text">Operational Region: PAN India (Urban and Rural Markets)</span>
+                                            <span className="experience-text">The company has grown to serve diverse markets while maintaining consistent quality.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -136,8 +132,7 @@ export default function Team() {
                             <div className="board-header">
                                 <h2 className="board-title">Board of Directors</h2>
                                 <p className="board-description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                                    elit tetas tellus luctus nam corpor mat is pulvinar pibus leo.
+                                    Experienced Minds, Strategic Decisions, Strong Leadership.
                                 </p>
 
                             </div>
@@ -145,9 +140,7 @@ export default function Team() {
                             <div className="team-grid">
                                 {teamMembers.map((member) => (
                                     <div data-aos="fade-zoom-in"
-                                        data-aos-easing="ease-in-back"
-                                        data-aos-delay="100"
-                                        data-aos-offset="0" key={member.id} className="team-card">
+                                        className="team-card">
                                         <div className={`team-image-container ${member.bgColor}`}>
                                             <div className="position-badge">{member.position}</div>
                                             <img src={member.image} alt={member.name} className="team-image" />

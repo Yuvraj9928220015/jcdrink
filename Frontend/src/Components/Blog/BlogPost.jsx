@@ -9,7 +9,7 @@ export default function BlogPost() {
                 <div id='Blog-container-Section' className="container">
                     <section className="blog-section">
                         <div className="section-header">
-                            <h2 className="section-heading">Latest Blog</h2>
+                            <h1 className="Blog-about-heading">Latest Blog</h1>
                             <p className="section-description">
                                 Stay updated with our latest insights, trends, and stories from the world of innovation.
                             </p>
