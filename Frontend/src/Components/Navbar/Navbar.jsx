@@ -161,12 +161,18 @@ const Navbar = () => {
                     🛒
                     {totalItems > 0 && <div className="cart-icon">{totalItems}</div>}
                   </div>
-                  <button className="contact-btn">
+                  <button
+                    className="contact-btn"
+                    onClick={() =>
+                      window.open("https://wa.me/918432221711?text=Hello%20there!", "_blank")
+                    }
+                  >
                     <div className="phone-icon">
                       <span>📞</span>
                     </div>
                     <span>+91-8432221711</span>
                   </button>
+
                   <div
                     className={`mobile-menu-btn ${isMobileMenuOpen ? 'active' : ''}`}
                     onClick={handleMobileMenuToggle}

@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 0px;
+    padding: 80px 0px;
     min-height: 100vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -49,7 +49,7 @@
 
 .Our-Energizing-container-main-title {
     font-size: 40px;
-    font-weight: 600; 
+    font-weight: 600;
     color: white;
     text-align: center;
     text-transform: uppercase;
@@ -287,13 +287,12 @@ h2.aos-init.aos-animate {
 .section-header h2 {
     font-size: 37px;
     text-align: start;
-    font-weight: 800;
+    font-weight: 600;
     background: linear-gradient(135deg, #ffffff 0%, #9CA3AF 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.2;
-    margin-bottom: 20px;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease forwards;
@@ -347,10 +346,12 @@ h2.aos-init.aos-animate {
 
 /* Enhanced Services Section Animations */
 .services-section h3 {
-    font-size: 23px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: white;
+    font-size: 27px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ffffff 0%, #9CA3AF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     opacity: 0;
     transform: translateX(-30px);
     animation: slideInLeft 1s ease forwards;
@@ -375,6 +376,7 @@ h2.aos-init.aos-animate {
     align-items: center;
     gap: 12px;
     padding: 10px 0;
+    letter-spacing: 1px;
     font-size: 18px;
     color: #ffffffcc;
     border-bottom: 1px solid #ffffff1a;
@@ -418,7 +420,6 @@ h2.aos-init.aos-animate {
 .service-item:hover {
     color: #A855F7;
     transform: translateX(10px) scale(1.02);
-    background: #8b5cf61a;
     border-radius: 8px;
     padding-left: 15px;
 }

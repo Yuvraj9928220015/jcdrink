@@ -27,8 +27,8 @@ export default function Energizing() {
                             <p className='energizing-Subtitle'>No Limits. No Breaks. Just Pure Power.</p>
                             <p className="energizing-description">
                                 X Factor Energy Drink isn’t just fuel — it’s ignition.
-                                Packed with explosive caffeine energy,<br />
-                                 B-Vitamins, and a bold, electrifying flavor, it powers your body and sharpens your mind in every sip. Whether you’re crushing workouts, gaming all night, or chasing the next big win, X Factor turns fatigue into fire.
+                                Packed with explosive caffeine energy,
+                                 B-Vitamins, and a bold, electrifying flavor, it powers your body and sharpens <br /> your  mind in every sip. Whether you’re crushing workouts, gaming all night, or chasing the next big win, X Factor turns fatigue into fire.
                             </p>
                             <div className="energizing-features">
                                 <div className="energizing-feature">

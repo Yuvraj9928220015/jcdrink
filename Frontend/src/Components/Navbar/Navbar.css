@@ -212,9 +212,11 @@
  }
 
  .contact-btn:hover {
+     background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
      transform: translateY(-3px);
      box-shadow: 0 12px 40px #8b5cf680;
  }
+
 
  .phone-icon {
      width: 36px;
@@ -527,9 +529,11 @@
      transform: translateY(-2px);
      box-shadow: 0 8px 25px #8b5cf666;
  }
-.cart-item-category {
+
+ .cart-item-category {
      color: #8b5cf6;
-}
+ }
+
  .continue-shopping-btn {
      background: transparent;
      color: #8b5cf6;
@@ -580,7 +584,7 @@
      }
 
      .contact-btn {
-      display: none;
+         display: none;
      }
 
      .contact-btn span:last-child {
