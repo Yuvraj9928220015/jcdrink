@@ -150,7 +150,7 @@
 /* Responsive Design */
 @media (max-width: 992px) {
     .energizing-container {
-        padding: 50px 20px;
+        padding: 50px 10px;
     }
 
     .energizing-title {
@@ -165,7 +165,7 @@
     }
 
     .energizing-container {
-        padding: 40px 20px;
+        padding: 40px 0px;
         min-height: auto;
     }
 
@@ -182,7 +182,7 @@
     }
 
     .energizing-description {
-        font-size: 1rem;
+        font-size: 18px;
     }
 }
 
@@ -201,11 +201,11 @@
     }
 
     .energizing-feature h3 {
-        font-size: 1.1rem;
+        font-size: 24px;
     }
 
     .energizing-feature p {
-        font-size: 0.9rem;
+        font-size: 18px;
     }
 }
 

@@ -97,7 +97,7 @@ a {
     font-size: 16px;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px #0000001a;
 }
 
 .retry-btn {
@@ -107,7 +107,7 @@ a {
 
 .retry-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 12px #667eea66;
 }
 
 .back-btn {
@@ -221,6 +221,14 @@ a {
     font-weight: 600;
 }
 
+nav.product-breadcrumb {
+    padding: 10px 0px;
+}
+
+nav.product-breadcrumb span {
+    font-size: 18px;
+}
+
 .product-breadcrumb-mobile span {
     margin: 0 5px;
 }
@@ -236,8 +244,8 @@ a {
 
 .product-description p {
     color: #ffffff;
-    line-height: 1.8;
-    font-size: 18px;
+    line-height: 1.6;
+    font-size: 22px;
     text-shadow: 1px 1px 2px #00000033
 }
 
@@ -267,7 +275,7 @@ a {
 .pack-select {
     width: 100%;
     padding: 16px 18px;
-    font-size: 15px;
+    font-size: 19px;
     border: 1px solid #e2e8f0;
     border-radius: 4px;
     background-color: #f7fafc;
@@ -361,6 +369,7 @@ a {
     border: none;
     border-radius: 2px;
     font-size: 16px;
+    padding: 15px 0px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -378,28 +387,6 @@ a {
     transform: translateY(0);
 }
 
-/* Wholesale Button */
-.wholesale-btn {
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    border: none;
-    border-radius: 2px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px lab(59.09% 62.04 22.1 / 0.3);
-}
-
-.wholesale-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
-}
-
 /* Tabs Section */
 .product-tabs-section {
     width: 100%;
@@ -407,7 +394,7 @@ a {
     background: white;
     border-radius: 16px;
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px #00000014;
 }
 
 .tabs-header {
@@ -421,7 +408,7 @@ a {
     padding: 18px 35px;
     background: none;
     border: none;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #718096;
     cursor: pointer;
@@ -473,9 +460,11 @@ a {
 }
 
 .tab-content p {
+    text-transform: capitalize;
     color: #4a5568;
-    line-height: 1.8;
-    font-size: 16px;
+    line-height: 1.6;
+    /* letter-spacing: 1px; */
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
@@ -492,7 +481,8 @@ a {
     padding: 12px 0;
     border-bottom: 1px solid #e2e8f0;
     color: #2d3748;
-    font-size: 15px;
+    text-transform: capitalize;
+    font-size: 19px;
     display: flex;
 }
 
@@ -501,9 +491,10 @@ a {
 }
 
 .product-specs li span {
+    font-size: 18px;
     font-weight: 700;
-    color: #1a202c;
-    min-width: 180px;
+    color: #242933d0;
+    min-width: 250px;
 }
 
 /* Additional Info Table */
@@ -527,12 +518,13 @@ a {
 .additional-info-table td {
     padding: 18px 20px;
     text-align: left;
+    font-size: 18px;
 }
 
 .additional-info-table th {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
-    color: #1a202c;
+    color: #333435de;
     width: 30%;
     background: #edf2f7;
 }
@@ -638,7 +630,7 @@ a {
 .form-group textarea:focus {
     outline: none;
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px #667eea1a;
 }
 
 .form-group textarea {
@@ -686,12 +678,12 @@ a {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px #667eea4d;
 }
 
 .submit-review-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px #667eea66;
 }
 
 /* Responsive Design */
@@ -771,7 +763,7 @@ a {
     }
 
     .productDetail-title {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .product-price {
@@ -779,7 +771,7 @@ a {
     }
 
     .product-description p {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .tab-button {

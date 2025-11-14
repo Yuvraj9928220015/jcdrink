@@ -171,7 +171,7 @@ export default function About() {
 
                         <div className="drink-card">
                             <div className="drink-image-wrapper">
-                                <img src="marquee-3.jpg" alt="Tropical Blend" />
+                                <img src="X-Factor-(2).jpg" alt="Tropical Blend" />
                                 <div className="drink-overlay">
                                     <div className="drink-overlay-content">
                                         <h3>X Factor</h3>

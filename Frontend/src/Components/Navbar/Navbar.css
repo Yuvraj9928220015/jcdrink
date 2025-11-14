@@ -208,13 +208,11 @@
      font-weight: 600;
      cursor: pointer;
      transition: all 0.3s ease;
-     box-shadow: 0 8px 30px #8b5cf666;
  }
 
  .contact-btn:hover {
      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
      transform: translateY(-3px);
-     box-shadow: 0 12px 40px #8b5cf680;
  }
 
 
@@ -290,6 +288,11 @@
      display: flex;
      align-items: center;
      justify-content: space-between;
+ }
+
+ .mobile-menu ul li a {
+     text-decoration: none;
+     color: white;
  }
 
  .mobile-dropdown-menu {
@@ -560,6 +563,16 @@
  }
 
  /* Responsive Design */
+ @media screen and (max-width: 1200px) {
+     .navbar-list ul {
+         gap: 20px;
+     }
+
+     .navbar-list ul li {
+         font-size: 15px;
+     }
+ }
+
  @media (max-width: 992px) {
      .navbar-content {
          padding: 1px 20px;

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useCart } from '../Cart/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./Product.css";
 
 const API_URL = 'http://localhost:5000';
@@ -14,6 +14,7 @@ export default function Product() {
     const [wishlist, setWishlist] = useState(new Set());
 
     const { addToCart } = useCart();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchProducts();
@@ -57,18 +58,43 @@ export default function Product() {
         setWishlist(newWishlist);
     };
 
+    const getPriceRange = (product) => {
+        if (!product.priceVariations || product.priceVariations.length === 0) {
+            return `₹${Number(product.price || 0).toFixed(2)}`;
+        }
+        const prices = product.priceVariations.map(v => Number(v.price));
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+
+        if (min === max) {
+            return `₹${min.toFixed(2)}`;
+        }
+        return `₹${min.toFixed(2)} - ₹${max.toFixed(2)}`;
+    };
+
+    const handleProductClick = (productId) => {
+        navigate(`/product/${productId}`);
+    };
+
     const handleAddToCart = (e, product) => {
         e.preventDefault();
         e.stopPropagation();
+
+        if (product.priceVariations && product.priceVariations.length > 0) {
+            navigate(`/product/${product._id || product.id}`);
+            return;
+        }
+
         addToCart(product);
         console.log('Added to cart:', product);
+        alert(`${product.title} added to cart!`);
     };
 
     const handleWishlistClick = (e, productId) => {
         e.preventDefault();
         e.stopPropagation();
         toggleWishlist(productId);
-    }
+    };
 
     if (loading) {
         return (
@@ -103,9 +129,10 @@ export default function Product() {
         <>
             <div className="Product-container">
                 <div className="Product-container-content">
-                    <div className="about-heading">Products</div>
+                    <div className="about-heading">Our Products</div>
                     <div className="Product-container-content-des">Browse our collection of amazing products.</div>
                 </div>
+
                 <div className="products-container">
                     {products.length === 0 ? (
                         <div className="error">
@@ -114,51 +141,56 @@ export default function Product() {
                     ) : (
                         <div className='products-grid'>
                             {products.map((product) => (
-                                <Link
-                                    to={`/product/${product._id || product.id}`}
+                                <div
                                     key={product._id || product.id}
-                                    className="product-item-link"
-                                    style={{ textDecoration: 'none' }}
+                                    className="product-item"
+                                    onClick={() => handleProductClick(product._id || product.id)}
+                                    style={{ cursor: 'pointer' }}
                                 >
-                                    <div className="product-item">
-                                        <div className="product-card">
-                                            <button
-                                                className={`wishlist-btn ${wishlist.has(product._id || product.id) ? 'active' : ''}`}
-                                                onClick={(e) => handleWishlistClick(e, product._id || product.id)}
-                                                aria-label="Add to wishlist"
+                                    <div className="product-card">
+                                        <button
+                                            className={`wishlist-btn ${wishlist.has(product._id || product.id) ? 'active' : ''}`}
+                                            onClick={(e) => handleWishlistClick(e, product._id || product.id)}
+                                            aria-label="Add to wishlist"
+                                        />
+                                        <div className="product-image-container">
+                                            <img
+                                                src={product.image ? `${API_URL}/${product.image.replace(/\\/g, '/')}` : 'https://via.placeholder.com/300x300?text=No+Image'}
+                                                alt={product.title || 'Product'}
+                                                className="product-image"
+                                                onError={(e) => {
+                                                    e.target.src = 'https://via.placeholder.com/300x300?text=Image+Error';
+                                                }}
                                             />
-                                            <div className="product-image-container">
-                                                <img
-                                                    src={product.image ? `${API_URL}/${product.image.replace(/\\/g, '/')}` : 'https://via.placeholder.com/300x300?text=No+Image'}
-                                                    alt={product.title || 'Product'}
-                                                    className="product-image"
-                                                    onError={(e) => {
-                                                        e.target.src = 'https://via.placeholder.com/300x300?text=Image+Error';
-                                                    }}
-                                                />
+                                        </div>
+                                        <div className="product-info">
+                                            <div className="product-container-category">
+                                                {product.category || 'Uncategorized'}
                                             </div>
-                                            <div className="product-info">
-                                                <div className="product-container-category">
-                                                    {product.category || 'Uncategorized'}
-                                                </div>
-                                                <h3 className="product-container-title">
-                                                    {product.title || 'Untitled Product'}
-                                                </h3>
-                                                <div className="product-bottom">
-                                                    <span className="price">
-                                                        ₹{Number(product.price || 0).toFixed(2)}
-                                                    </span>
-                                                    <button
-                                                        className="add-to-cart"
-                                                        onClick={(e) => handleAddToCart(e, product)}
-                                                    >
-                                                      <a href="">  Add to Cart</a>
-                                                    </button>
-                                                </div>
+                                            <h3 className="product-container-title">
+                                                {product.title || 'Untitled Product'}
+                                            </h3>
+                                            <div className="product-bottom">
+                                                <span className="price">
+                                                    {getPriceRange(product)}
+                                                </span>
+                                                {product.priceVariations && product.priceVariations.length > 0 && (
+                                                    <div className="sizes-available">
+                                                        {product.priceVariations.length} size{product.priceVariations.length !== 1 ? 's' : ''} available
+                                                    </div>
+                                                )}
                                             </div>
+                                            <button
+                                                className="add-to-cart"
+                                                onClick={(e) => handleAddToCart(e, product)}
+                                            >
+                                                {product.priceVariations && product.priceVariations.length > 0
+                                                    ? 'View Details'
+                                                    : 'Add to Cart'}
+                                            </button>
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     )}

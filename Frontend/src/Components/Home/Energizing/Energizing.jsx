@@ -53,7 +53,7 @@ export default function Energizing() {
                     <div className="energizing-col-5">
                         <div className="energizing-image-box">
                             <img
-                                src="/marquee-3.jpg"
+                                src="/X-Factor-(2).jpg"
                                 alt="Energizing Image"
                                 className="energizing-image"
                             />

@@ -5,7 +5,7 @@ function OurExpertise() {
         <>
             <div className="our-expertise-section">
                 <div data-aos="fade-up"
-                    data-aos-duration="3000" className="container">
+                    data-aos-duration="3000" className="OurExpertise-container-fluid">
                     <div className="Energizing-container-main">
                         <div
                             className="Our-Energizing-container-main-title"
@@ -40,7 +40,7 @@ function OurExpertise() {
 
                         <div className="right-section">
                             <div className="content-card">
-                                <div className="section-header">
+                                <div className="Our-section-header">
                                     <h2
                                         data-aos="fade-left"
                                         data-aos-duration="1000"

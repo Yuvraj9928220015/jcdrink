@@ -5,6 +5,8 @@ import './ProductData.css';
 
 const API_URL = 'http://localhost:5000';
 
+const AVAILABLE_SIZES = ['100 ML', '200 ML', '300 ML', '500 ML', '750 ML', '800 ML', '1 Liter', '2 Liter'];
+
 export default function ProductData() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -14,12 +16,13 @@ export default function ProductData() {
     const [showForm, setShowForm] = useState(false);
     const [showProductModal, setShowProductModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [selectedSize, setSelectedSize] = useState('');
     const [currentProduct, setCurrentProduct] = useState({
         id: null,
         title: '',
         description: '',
-        price: '',
         category: '',
+        priceVariations: [{ size: '100 ML', price: '' }],
         image: null
     });
 
@@ -82,6 +85,31 @@ export default function ProductData() {
         setCurrentProduct({ ...currentProduct, [name]: value });
     };
 
+    const handlePriceVariationChange = (index, field, value) => {
+        const updatedVariations = [...currentProduct.priceVariations];
+        updatedVariations[index][field] = value;
+        setCurrentProduct({ ...currentProduct, priceVariations: updatedVariations });
+    };
+
+    const addPriceVariation = () => {
+        // Find which sizes are already used
+        const usedSizes = currentProduct.priceVariations.map(v => v.size);
+        // Find first available size that's not used
+        const availableSize = AVAILABLE_SIZES.find(size => !usedSizes.includes(size)) || AVAILABLE_SIZES[0];
+        
+        setCurrentProduct({
+            ...currentProduct,
+            priceVariations: [...currentProduct.priceVariations, { size: availableSize, price: '' }]
+        });
+    };
+
+    const removePriceVariation = (index) => {
+        if (currentProduct.priceVariations.length > 1) {
+            const updatedVariations = currentProduct.priceVariations.filter((_, i) => i !== index);
+            setCurrentProduct({ ...currentProduct, priceVariations: updatedVariations });
+        }
+    };
+
     const handleFileChange = (e) => {
         setCurrentProduct({ ...currentProduct, image: e.target.files[0] });
     };
@@ -89,11 +117,19 @@ export default function ProductData() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validate that all price variations have prices
+        const hasEmptyPrices = currentProduct.priceVariations.some(v => !v.price || v.price <= 0);
+        if (hasEmptyPrices) {
+            alert('Please enter valid prices for all sizes!');
+            return;
+        }
+
         const formData = new FormData();
         formData.append('title', currentProduct.title);
         formData.append('description', currentProduct.description);
-        formData.append('price', currentProduct.price);
         formData.append('category', currentProduct.category);
+        formData.append('priceVariations', JSON.stringify(currentProduct.priceVariations));
+        
         if (currentProduct.image) {
             formData.append('image', currentProduct.image);
         }
@@ -112,6 +148,7 @@ export default function ProductData() {
             fetchProducts();
         } catch (error) {
             console.error("Error saving product:", error.response ? error.response.data : error.message);
+            alert('Error saving product. Please try again.');
         }
     };
 
@@ -122,8 +159,10 @@ export default function ProductData() {
             id: product._id,
             title: product.title,
             description: product.description,
-            price: product.price,
             category: product.category,
+            priceVariations: product.priceVariations && product.priceVariations.length > 0 
+                ? product.priceVariations 
+                : [{ size: '100 ML', price: '' }],
             image: null
         });
     };
@@ -142,7 +181,14 @@ export default function ProductData() {
     const resetForm = () => {
         setIsEditing(false);
         setShowForm(false);
-        setCurrentProduct({ id: null, title: '', description: '', price: '', category: '', image: null });
+        setCurrentProduct({ 
+            id: null, 
+            title: '', 
+            description: '', 
+            category: '', 
+            priceVariations: [{ size: '100 ML', price: '' }],
+            image: null 
+        });
         const imageInput = document.getElementById('image-input');
         if (imageInput) {
             imageInput.value = null;
@@ -156,12 +202,42 @@ export default function ProductData() {
 
     const handleProductClick = (product) => {
         setSelectedProduct(product);
+        setSelectedSize(product.priceVariations?.[0]?.size || '');
         setShowProductModal(true);
     };
 
     const closeProductModal = () => {
         setShowProductModal(false);
         setSelectedProduct(null);
+        setSelectedSize('');
+    };
+
+    const getCurrentPrice = () => {
+        if (!selectedProduct || !selectedSize) return 0;
+        const variation = selectedProduct.priceVariations.find(v => v.size === selectedSize);
+        return variation ? variation.price : 0;
+    };
+
+    const getPriceRange = (product) => {
+        if (!product.priceVariations || product.priceVariations.length === 0) {
+            return '₹0.00';
+        }
+        const prices = product.priceVariations.map(v => Number(v.price));
+        const min = Math.min(...prices);
+        const max = Math.max(...prices);
+        
+        if (min === max) {
+            return `₹${min.toFixed(2)}`;
+        }
+        return `₹${min.toFixed(2)} - ₹${max.toFixed(2)}`;
+    };
+
+    // Get available sizes for dropdown (excluding already selected ones)
+    const getAvailableSizes = (currentIndex) => {
+        const usedSizes = currentProduct.priceVariations
+            .map((v, idx) => idx !== currentIndex ? v.size : null)
+            .filter(Boolean);
+        return AVAILABLE_SIZES.filter(size => !usedSizes.includes(size));
     };
 
     // Login Form Component
@@ -242,7 +318,7 @@ export default function ProductData() {
         );
     }
 
-    // Main Product Dashboard (same as before)
+    // Main Product Dashboard
     return (
         <>
             <div className="ProductData">
@@ -252,7 +328,7 @@ export default function ProductData() {
                         <div className="header-content">
                             <div>
                                 <h1>Cold Drink Products</h1>
-                                <p>Manage your beverage inventory with style</p>
+                                <p>Manage your beverage inventory with custom pricing for each size</p>
                             </div>
                             <button onClick={handleLogout} className="btn-logout">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -277,7 +353,7 @@ export default function ProductData() {
 
                     {/* Modal for Add/Edit Form */}
                     <div className={`modal-overlay ${!showForm ? 'hidden' : ''}`}>
-                        <div className="modal-content">
+                        <div className="modal-content form-modal">
                             <div className="modal-header">
                                 <h2>{isEditing ? 'Edit Product' : 'Add New Product'}</h2>
                                 <button onClick={resetForm} className="close-btn">
@@ -299,7 +375,7 @@ export default function ProductData() {
                                     <input
                                         type="text"
                                         name="title"
-                                        placeholder="Enter product title"
+                                        placeholder="e.g., Coca Cola, Pepsi, Fanta"
                                         value={currentProduct.title}
                                         onChange={handleInputChange}
                                         required
@@ -323,54 +399,117 @@ export default function ProductData() {
                                     />
                                 </div>
 
-                                <div className="form-row">
-                                    <div className="form-group">
-                                        <label className="form-label">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <line x1="12" y1="1" x2="12" y2="23" />
-                                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                                            </svg>
-                                            Price
-                                        </label>
-                                        <input
-                                            type="number"
-                                            name="price"
-                                            placeholder="0.00"
-                                            value={currentProduct.price}
-                                            onChange={handleInputChange}
-                                            required
-                                            step="0.01"
-                                        />
-                                    </div>
-
-                                    <div className="form-group">
-                                        <label className="form-label">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                                                <line x1="7" y1="7" x2="7.01" y2="7" />
-                                            </svg>
-                                            Category
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="category"
-                                            placeholder="e.g., Cola, Juice"
-                                            value={currentProduct.category}
-                                            onChange={handleInputChange}
-                                            required
-                                        />
-                                    </div>
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                                            <line x1="7" y1="7" x2="7.01" y2="7" />
+                                        </svg>
+                                        Category
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="category"
+                                        placeholder="e.g., Cola, Juice, Energy Drink"
+                                        value={currentProduct.category}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
                                 </div>
 
                                 <div className="form-group">
-                                    <label className="form-label">Product Image</label>
+                                    <label className="form-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <line x1="12" y1="1" x2="12" y2="23" />
+                                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                        </svg>
+                                        Price for Each Size
+                                    </label>
+                                    <div className="pricing-info">
+                                        <p>💡 Set different prices for each bottle size</p>
+                                    </div>
+                                    
+                                    <div className="price-variations-container">
+                                        {currentProduct.priceVariations.map((variation, index) => (
+                                            <div key={index} className="price-variation-row">
+                                                <div className="variation-number">{index + 1}</div>
+                                                <select
+                                                    value={variation.size}
+                                                    onChange={(e) => handlePriceVariationChange(index, 'size', e.target.value)}
+                                                    required
+                                                    className="size-select"
+                                                >
+                                                    <option value="">Select Size</option>
+                                                    {getAvailableSizes(index).map(size => (
+                                                        <option key={size} value={size}>{size}</option>
+                                                    ))}
+                                                    {variation.size && !getAvailableSizes(index).includes(variation.size) && (
+                                                        <option value={variation.size}>{variation.size}</option>
+                                                    )}
+                                                </select>
+                                                
+                                                <div className="price-input-wrapper">
+                                                    <span className="rupee-symbol">₹ </span>
+                                                    <input
+                                                        type="number"
+                                                        placeholder="Price"
+                                                        value={variation.price}
+                                                        onChange={(e) => handlePriceVariationChange(index, 'price', e.target.value)}
+                                                        required
+                                                        step="0.01"
+                                                        min="0"
+                                                        className="price-input"
+                                                    />
+                                                </div>
+                                                
+                                                {currentProduct.priceVariations.length > 1 && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => removePriceVariation(index)}
+                                                        className="btn-remove-variation"
+                                                        title="Remove this size"
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                            <path d="M18 6L6 18M6 6l12 12" />
+                                                        </svg>
+                                                    </button>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    
+                                    {currentProduct.priceVariations.length < AVAILABLE_SIZES.length && (
+                                        <button
+                                            type="button"
+                                            onClick={addPriceVariation}
+                                            className="btn-add-variation"
+                                        >
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M12 5v14M5 12h14" />
+                                            </svg>
+                                            Add Another Size & Price
+                                        </button>
+                                    )}
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                                            <polyline points="21 15 16 10 5 21"/>
+                                        </svg>
+                                        Product Image
+                                    </label>
                                     <input
                                         type="file"
                                         name="image"
                                         id="image-input"
                                         onChange={handleFileChange}
                                         accept="image/*"
+                                        required={!isEditing}
                                     />
+                                    <small className="form-hint">Upload a clear product image (JPEG, PNG, WebP)</small>
                                 </div>
 
                                 <div className="form-actions">
@@ -408,19 +547,49 @@ export default function ProductData() {
                                             alt={selectedProduct.title}
                                             className="product-view-image"
                                         />
-                                        <div className="product-category-badge">
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                                                <line x1="7" y1="7" x2="7.01" y2="7" />
-                                            </svg>
-                                            {selectedProduct.category}
-                                        </div>
                                     </div>
 
                                     <div className="product-info">
                                         <h3 className="productData-title">{selectedProduct.title}</h3>
                                         <p className="productData-description">{selectedProduct.description}</p>
-                                        <div className="product-price">${Number(selectedProduct.price).toFixed(2)}</div>
+                                        
+                                        <div className="size-selector">
+                                            <label className="form-label">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                                </svg>
+                                                Choose Size
+                                            </label>
+                                            <select 
+                                                value={selectedSize}
+                                                onChange={(e) => setSelectedSize(e.target.value)}
+                                                className="size-dropdown"
+                                            >
+                                                {selectedProduct.priceVariations?.map((variation) => (
+                                                    <option key={variation.size} value={variation.size}>
+                                                        {variation.size} - ₹{Number(variation.price).toFixed(2)}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div className="product-price">₹ {getCurrentPrice().toFixed(2)}</div>                        
+                                        {/* Show all available sizes */}
+                                        <div className="available-sizes">
+                                            <p className="sizes-label">Available Sizes:</p>
+                                            <div className="size-chips">
+                                                {selectedProduct.priceVariations?.map((variation) => (
+                                                    <div 
+                                                        key={variation.size} 
+                                                        className={`size-chip ${selectedSize === variation.size ? 'active' : ''}`}
+                                                        onClick={() => setSelectedSize(variation.size)}
+                                                    >
+                                                        <span className="chip-size">{variation.size}</span>
+                                                        <span className="chip-price">₹{Number(variation.price).toFixed(2)}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div className="product-actions">
@@ -466,13 +635,7 @@ export default function ProductData() {
                                 className="productData-card"
                                 onClick={() => handleProductClick(product)}
                             >
-                                <div className="card-category">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
-                                        <line x1="7" y1="7" x2="7.01" y2="7" />
-                                    </svg>
-                                    {product.category}
-                                </div>
+                              
                                 <img
                                     src={`${API_URL}/${product.image.replace(/\\/g, '/')}`}
                                     alt={product.title}
@@ -480,7 +643,10 @@ export default function ProductData() {
                                 <div className="card-content">
                                     <h3>{product.title}</h3>
                                     <p>{product.description}</p>
-                                    <div className="price">${Number(product.price).toFixed(2)}</div>
+                                    <div className="price">{getPriceRange(product)}</div>
+                                    <div className="sizes-available">
+                                        {product.priceVariations?.length || 0} size{product.priceVariations?.length !== 1 ? 's' : ''} available
+                                    </div>
                                     <div className="card-actions">
                                         <button
                                             onClick={(e) => {
@@ -526,7 +692,7 @@ export default function ProductData() {
                                 <rect x="3" y="14" width="7" height="7" />
                             </svg>
                             <h3>No products yet</h3>
-                            <p>Get started by adding your first cold drink product.</p>
+                            <p>Start by adding your first cold drink with custom pricing for each size.</p>
                             <button onClick={openAddForm} className="add-product-btn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M12 5v14M5 12h14" />

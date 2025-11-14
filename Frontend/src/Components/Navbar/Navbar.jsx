@@ -191,20 +191,8 @@ const Navbar = () => {
                 <li><a href="/Product">Product</a></li>
                 <li onClick={() => handleMobileDropdownToggle('pages')}>
                   Pages
-                  <span className="dropdown-arrow">▼</span>
                   <div className={`mobile-dropdown-menu ${activeMobileDropdown === 'pages' ? 'show' : ''}`}>
                     {pagesItems.map((item, index) => (
-                      <a key={index} href={item.path} className="mobile-dropdown-item">
-                        {item.text}
-                      </a>
-                    ))}
-                  </div>
-                </li>
-                <li onClick={() => handleMobileDropdownToggle('archive')}>
-                  Blog
-                  <span className="dropdown-arrow">▼</span>
-                  <div className={`mobile-dropdown-menu ${activeMobileDropdown === 'archive' ? 'show' : ''}`}>
-                    {archiveItems.map((item, index) => (
                       <a key={index} href={item.path} className="mobile-dropdown-item">
                         {item.text}
                       </a>
