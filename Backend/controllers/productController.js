@@ -14,14 +14,12 @@ exports.getProducts = async (req, res) => {
     }
 };
 
-
 exports.addProduct = async (req, res) => {
     try {
-
-        const { title, description, price, category } = req.body;
+        const { title, description, category, priceVariations } = req.body;
         const image = req.file ? req.file.path : null;
 
-        if (!title || !description || !price || !category || !image) {
+        if (!title || !description || !category || !image) {
             if (req.file) {
                 fs.unlink(req.file.path, (err) => {
                     if (err) console.log('Error deleting orphaned file:', err);
@@ -30,11 +28,35 @@ exports.addProduct = async (req, res) => {
             return res.status(400).json({ message: 'Please fill all fields, including the image.' });
         }
 
+        // Parse priceVariations if it's a string
+        let parsedPriceVariations;
+        try {
+            parsedPriceVariations = typeof priceVariations === 'string' 
+                ? JSON.parse(priceVariations) 
+                : priceVariations;
+        } catch (e) {
+            if (req.file) {
+                fs.unlink(req.file.path, (err) => {
+                    if (err) console.log('Error deleting orphaned file:', err);
+                });
+            }
+            return res.status(400).json({ message: 'Invalid price variations format' });
+        }
+
+        if (!parsedPriceVariations || parsedPriceVariations.length === 0) {
+            if (req.file) {
+                fs.unlink(req.file.path, (err) => {
+                    if (err) console.log('Error deleting orphaned file:', err);
+                });
+            }
+            return res.status(400).json({ message: 'At least one price variation is required' });
+        }
+
         const newProduct = new Product({
             title,
             description,
             category,
-            price,
+            priceVariations: parsedPriceVariations,
             image
         });
 
@@ -49,7 +71,7 @@ exports.addProduct = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
     try {
-        const { title, description, price, category } = req.body;
+        const { title, description, category, priceVariations } = req.body;
         let image;
 
         const product = await Product.findById(req.params.id);
@@ -72,11 +94,25 @@ exports.updateProduct = async (req, res) => {
             }
         }
 
+        // Parse priceVariations if provided
+        let parsedPriceVariations;
+        if (priceVariations) {
+            try {
+                parsedPriceVariations = typeof priceVariations === 'string' 
+                    ? JSON.parse(priceVariations) 
+                    : priceVariations;
+            } catch (e) {
+                return res.status(400).json({ message: 'Invalid price variations format' });
+            }
+        }
+
         product.title = title || product.title;
         product.description = description || product.description;
-        product.price = price || product.price;
-        product.image = image || product.image;
         product.category = category || product.category;
+        product.image = image || product.image;
+        if (parsedPriceVariations) {
+            product.priceVariations = parsedPriceVariations;
+        }
 
         const updatedProduct = await product.save();
         res.status(200).json(updatedProduct);
