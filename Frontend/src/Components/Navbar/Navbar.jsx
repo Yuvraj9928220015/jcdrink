@@ -189,16 +189,7 @@ const Navbar = () => {
                 <li className="active"><a href="/">Home</a></li>
                 <li><a href="/About">About</a></li>
                 <li><a href="/Product">Product</a></li>
-                <li onClick={() => handleMobileDropdownToggle('pages')}>
-                  Pages
-                  <div className={`mobile-dropdown-menu ${activeMobileDropdown === 'pages' ? 'show' : ''}`}>
-                    {pagesItems.map((item, index) => (
-                      <a key={index} href={item.path} className="mobile-dropdown-item">
-                        {item.text}
-                      </a>
-                    ))}
-                  </div>
-                </li>
+                <li><a href="/Team">Team</a></li>
                 <li><a href="/Contact">Contact Us</a></li>
                 <li>
                   <div className="icon-btn" onClick={handleCartModalToggle}>

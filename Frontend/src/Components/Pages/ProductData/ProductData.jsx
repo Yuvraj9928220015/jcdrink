@@ -48,10 +48,10 @@ export default function ProductData() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await axios.post(`${API_URL}/api/auth/login`, loginData);
-            
+
             if (response.data.success) {
                 setIsAuthenticated(true);
                 sessionStorage.setItem('isAuthenticated', 'true');
@@ -96,7 +96,7 @@ export default function ProductData() {
         const usedSizes = currentProduct.priceVariations.map(v => v.size);
         // Find first available size that's not used
         const availableSize = AVAILABLE_SIZES.find(size => !usedSizes.includes(size)) || AVAILABLE_SIZES[0];
-        
+
         setCurrentProduct({
             ...currentProduct,
             priceVariations: [...currentProduct.priceVariations, { size: availableSize, price: '' }]
@@ -129,7 +129,7 @@ export default function ProductData() {
         formData.append('description', currentProduct.description);
         formData.append('category', currentProduct.category);
         formData.append('priceVariations', JSON.stringify(currentProduct.priceVariations));
-        
+
         if (currentProduct.image) {
             formData.append('image', currentProduct.image);
         }
@@ -160,8 +160,8 @@ export default function ProductData() {
             title: product.title,
             description: product.description,
             category: product.category,
-            priceVariations: product.priceVariations && product.priceVariations.length > 0 
-                ? product.priceVariations 
+            priceVariations: product.priceVariations && product.priceVariations.length > 0
+                ? product.priceVariations
                 : [{ size: '100 ML', price: '' }],
             image: null
         });
@@ -181,13 +181,13 @@ export default function ProductData() {
     const resetForm = () => {
         setIsEditing(false);
         setShowForm(false);
-        setCurrentProduct({ 
-            id: null, 
-            title: '', 
-            description: '', 
-            category: '', 
+        setCurrentProduct({
+            id: null,
+            title: '',
+            description: '',
+            category: '',
             priceVariations: [{ size: '100 ML', price: '' }],
-            image: null 
+            image: null
         });
         const imageInput = document.getElementById('image-input');
         if (imageInput) {
@@ -225,7 +225,7 @@ export default function ProductData() {
         const prices = product.priceVariations.map(v => Number(v.price));
         const min = Math.min(...prices);
         const max = Math.max(...prices);
-        
+
         if (min === max) {
             return `₹${min.toFixed(2)}`;
         }
@@ -324,7 +324,7 @@ export default function ProductData() {
             <div className="ProductData">
                 {/* Header */}
                 <header className="ProductData-header">
-                    <div className="container">
+                    <div className="">
                         <div className="header-content">
                             <div>
                                 <h1>Cold Drink Products</h1>
@@ -342,7 +342,7 @@ export default function ProductData() {
                     </div>
                 </header>
 
-                <div className="container">
+                <div className="ProductData-continer">
                     {/* Add Product Button */}
                     <button onClick={openAddForm} className="add-product-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -428,7 +428,7 @@ export default function ProductData() {
                                     <div className="pricing-info">
                                         <p>💡 Set different prices for each bottle size</p>
                                     </div>
-                                    
+
                                     <div className="price-variations-container">
                                         {currentProduct.priceVariations.map((variation, index) => (
                                             <div key={index} className="price-variation-row">
@@ -447,7 +447,7 @@ export default function ProductData() {
                                                         <option value={variation.size}>{variation.size}</option>
                                                     )}
                                                 </select>
-                                                
+
                                                 <div className="price-input-wrapper">
                                                     <span className="rupee-symbol">₹ </span>
                                                     <input
@@ -461,7 +461,7 @@ export default function ProductData() {
                                                         className="price-input"
                                                     />
                                                 </div>
-                                                
+
                                                 {currentProduct.priceVariations.length > 1 && (
                                                     <button
                                                         type="button"
@@ -477,7 +477,7 @@ export default function ProductData() {
                                             </div>
                                         ))}
                                     </div>
-                                    
+
                                     {currentProduct.priceVariations.length < AVAILABLE_SIZES.length && (
                                         <button
                                             type="button"
@@ -495,9 +495,9 @@ export default function ProductData() {
                                 <div className="form-group">
                                     <label className="form-label">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                            <circle cx="8.5" cy="8.5" r="1.5"/>
-                                            <polyline points="21 15 16 10 5 21"/>
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                            <circle cx="8.5" cy="8.5" r="1.5" />
+                                            <polyline points="21 15 16 10 5 21" />
                                         </svg>
                                         Product Image
                                     </label>
@@ -552,7 +552,7 @@ export default function ProductData() {
                                     <div className="product-info">
                                         <h3 className="productData-title">{selectedProduct.title}</h3>
                                         <p className="productData-description">{selectedProduct.description}</p>
-                                        
+
                                         <div className="size-selector">
                                             <label className="form-label">
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -560,7 +560,7 @@ export default function ProductData() {
                                                 </svg>
                                                 Choose Size
                                             </label>
-                                            <select 
+                                            <select
                                                 value={selectedSize}
                                                 onChange={(e) => setSelectedSize(e.target.value)}
                                                 className="size-dropdown"
@@ -573,14 +573,14 @@ export default function ProductData() {
                                             </select>
                                         </div>
 
-                                        <div className="product-price">₹ {getCurrentPrice().toFixed(2)}</div>                        
+                                        <div className="product-price">₹ {getCurrentPrice().toFixed(2)}</div>
                                         {/* Show all available sizes */}
                                         <div className="available-sizes">
                                             <p className="sizes-label">Available Sizes:</p>
                                             <div className="size-chips">
                                                 {selectedProduct.priceVariations?.map((variation) => (
-                                                    <div 
-                                                        key={variation.size} 
+                                                    <div
+                                                        key={variation.size}
                                                         className={`size-chip ${selectedSize === variation.size ? 'active' : ''}`}
                                                         onClick={() => setSelectedSize(variation.size)}
                                                     >
@@ -635,7 +635,7 @@ export default function ProductData() {
                                 className="productData-card"
                                 onClick={() => handleProductClick(product)}
                             >
-                              
+
                                 <img
                                     src={`${API_URL}/${product.image.replace(/\\/g, '/')}`}
                                     alt={product.title}

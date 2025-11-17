@@ -79,7 +79,7 @@ const Main = () => {
                     onClick={() => handleOptionSelect(productId, '1 BOTTLE')}
                     className={`selection-btn ${selectedOptions[productId] === '1 BOTTLE' ? 'active' : ''}`}
                 >
-                    1 CAN
+                    1 BOTTLE
                 </button>
                 <button
                     onClick={() => handleOptionSelect(productId, '3 BOTTLES')}
@@ -92,7 +92,7 @@ const Main = () => {
             {/* Price Section */}
             <div className="price-section">
                 <div className="price">
-                    ${product.options[selectedOptions[productId]].price} USD
+                    {product.options[selectedOptions[productId]].price}
                 </div>
             </div>
 
