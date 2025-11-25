@@ -5,7 +5,9 @@ import { useCart } from '../Cart/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import "./Product.css";
 
-const API_URL = 'http://localhost:5000';
+// Fixed API URL - add /api to match ProductData.jsx
+const API_BASE_URL = 'https://api.jcdrink.com';
+const API_URL = `${API_BASE_URL}/api`;
 
 export default function Product() {
     const [products, setProducts] = useState([]);
@@ -25,9 +27,10 @@ export default function Product() {
             setLoading(true);
             setError(null);
 
-            console.log('Fetching products from:', `${API_URL}/api/products`);
+            // Use the correct endpoint with /api
+            console.log('Fetching products from:', `${API_URL}/products`);
 
-            const response = await fetch(`${API_URL}/api/products`);
+            const response = await fetch(`${API_URL}/products`);
 
             console.log('Response status:', response.status);
             console.log('Response ok:', response.ok);
@@ -70,6 +73,20 @@ export default function Product() {
             return `₹${min.toFixed(2)}`;
         }
         return `₹${min.toFixed(2)} - ₹${max.toFixed(2)}`;
+    };
+
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) {
+            return 'https://via.placeholder.com/300x300?text=No+Image';
+        }
+
+        if (imagePath.startsWith('http')) {
+            return imagePath;
+        }
+
+        // Clean the path and use API_BASE_URL
+        const cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+        return `${API_BASE_URL}/${cleanPath}`;
     };
 
     const handleProductClick = (productId) => {
@@ -155,10 +172,11 @@ export default function Product() {
                                         />
                                         <div className="product-image-container">
                                             <img
-                                                src={product.image ? `${API_URL}/${product.image.replace(/\\/g, '/')}` : 'https://via.placeholder.com/300x300?text=No+Image'}
+                                                src={getImageUrl(product.image)}
                                                 alt={product.title || 'Product'}
                                                 className="product-image"
                                                 onError={(e) => {
+                                                    console.log('Image failed to load:', product.image);
                                                     e.target.src = 'https://via.placeholder.com/300x300?text=Image+Error';
                                                 }}
                                             />

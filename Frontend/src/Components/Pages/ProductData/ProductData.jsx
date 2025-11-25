@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProductData.css';
 
-const API_URL = 'http://localhost:5000';
+// Fixed API URL
+const API_BASE_URL = 'https://api.jcdrink.com';
+const API_URL = `${API_BASE_URL}/api`;
 
 const AVAILABLE_SIZES = ['100 ML', '200 ML', '300 ML', '500 ML', '750 ML', '800 ML', '1 Liter', '2 Liter'];
 
@@ -50,18 +52,30 @@ export default function ProductData() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${API_URL}/api/auth/login`, loginData);
+            const response = await axios.post(`${API_URL}/auth/login`, loginData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
 
             if (response.data.success) {
                 setIsAuthenticated(true);
                 sessionStorage.setItem('isAuthenticated', 'true');
                 setLoginError('');
             } else {
-                setLoginError('Invalid email or password');
+                setLoginError(response.data.message || 'Invalid email or password');
             }
         } catch (error) {
-            setLoginError('Invalid email or password');
             console.error("Login error:", error);
+            if (error.response?.data?.message) {
+                setLoginError(error.response.data.message);
+            } else if (error.response?.status === 404) {
+                setLoginError('Server endpoint not found. Check API URL');
+            } else if (error.response?.status === 500) {
+                setLoginError('Server error. Please try again later');
+            } else {
+                setLoginError('Invalid email or password');
+            }
         }
     };
 
@@ -73,11 +87,27 @@ export default function ProductData() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get(`${API_URL}/api/products`);
+            const response = await axios.get(`${API_URL}/products`);
             setProducts(response.data);
         } catch (error) {
             console.error("Error fetching products:", error);
         }
+    };
+
+    // Function to get correct image URL
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) return '';
+        
+        // Remove leading slashes and backslashes
+        let cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+        
+        // If already a full URL, return as is
+        if (cleanPath.startsWith('http')) {
+            return cleanPath;
+        }
+        
+        // Return full URL with API base
+        return `${API_BASE_URL}/${cleanPath}`;
     };
 
     const handleInputChange = (e) => {
@@ -92,9 +122,7 @@ export default function ProductData() {
     };
 
     const addPriceVariation = () => {
-        // Find which sizes are already used
         const usedSizes = currentProduct.priceVariations.map(v => v.size);
-        // Find first available size that's not used
         const availableSize = AVAILABLE_SIZES.find(size => !usedSizes.includes(size)) || AVAILABLE_SIZES[0];
 
         setCurrentProduct({
@@ -117,7 +145,6 @@ export default function ProductData() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate that all price variations have prices
         const hasEmptyPrices = currentProduct.priceVariations.some(v => !v.price || v.price <= 0);
         if (hasEmptyPrices) {
             alert('Please enter valid prices for all sizes!');
@@ -136,11 +163,11 @@ export default function ProductData() {
 
         try {
             if (isEditing) {
-                await axios.put(`${API_URL}/api/products/${currentProduct.id}`, formData, {
+                await axios.put(`${API_URL}/products/${currentProduct.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             } else {
-                await axios.post(`${API_URL}/api/products`, formData, {
+                await axios.post(`${API_URL}/products`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
             }
@@ -170,7 +197,7 @@ export default function ProductData() {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             try {
-                await axios.delete(`${API_URL}/api/products/${id}`);
+                await axios.delete(`${API_URL}/products/${id}`);
                 fetchProducts();
             } catch (error) {
                 console.error("Error deleting product:", error);
@@ -232,7 +259,6 @@ export default function ProductData() {
         return `₹${min.toFixed(2)} - ₹${max.toFixed(2)}`;
     };
 
-    // Get available sizes for dropdown (excluding already selected ones)
     const getAvailableSizes = (currentIndex) => {
         const usedSizes = currentProduct.priceVariations
             .map((v, idx) => idx !== currentIndex ? v.size : null)
@@ -543,9 +569,12 @@ export default function ProductData() {
                                 <div className="product-view-content">
                                     <div className="product-image-container">
                                         <img
-                                            src={`${API_URL}/${selectedProduct.image.replace(/\\/g, '/')}`}
+                                            src={getImageUrl(selectedProduct.image)}
                                             alt={selectedProduct.title}
                                             className="product-view-image"
+                                            onError={(e) => {
+                                                e.target.src = 'https://via.placeholder.com/300x300?text=No+Image';
+                                            }}
                                         />
                                     </div>
 
@@ -635,11 +664,15 @@ export default function ProductData() {
                                 className="productData-card"
                                 onClick={() => handleProductClick(product)}
                             >
-
-                                <img
-                                    src={`${API_URL}/${product.image.replace(/\\/g, '/')}`}
-                                    alt={product.title}
-                                />
+                                <div className="product-image-wrapper">
+                                    <img
+                                        src={getImageUrl(product.image)}
+                                        alt={product.title}
+                                        onError={(e) => {
+                                            e.target.src = 'https://via.placeholder.com/250x250?text=No+Image';
+                                        }}
+                                    />
+                                </div>
                                 <div className="card-content">
                                     <h3>{product.title}</h3>
                                     <p>{product.description}</p>

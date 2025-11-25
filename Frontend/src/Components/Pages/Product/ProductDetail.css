@@ -397,6 +397,10 @@ nav.product-breadcrumb span {
     box-shadow: 0 10px 30px #00000014;
 }
 
+#Product-Details {
+    color: #4a5568;
+}
+
 .tabs-header {
     display: flex;
     gap: 0;
@@ -707,7 +711,7 @@ nav.product-breadcrumb span {
 
 @media (max-width: 768px) {
     .product-detail-wrapper {
-        padding: 80px 15px;
+        padding: 80px 0px;
     }
 
     .product-detail-container {
@@ -786,8 +790,10 @@ nav.product-breadcrumb span {
     .product-specs li {
         font-size: 14px;
         padding: 10px 0;
-        flex-direction: column;
         gap: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .product-specs li span {

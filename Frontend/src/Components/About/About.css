@@ -400,7 +400,7 @@
         font-size: 2rem;
     }
 
-    .about-text-content {
+    .about-text-co ntent {
         padding: 1rem;
     }
 
@@ -408,9 +408,5 @@
     .vision-card,
     .feature-card {
         padding: 1.5rem;
-    }
-
-    .drink-image-wrapper {
-        height: 250px;
     }
 }

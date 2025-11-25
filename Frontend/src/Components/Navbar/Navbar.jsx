@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useCart } from '../Pages/Cart/CartContext';
 import "./Navbar.css"
 
-const API_URL = 'http://localhost:5000';
+// Fixed API URL - consistent with other files
+const API_BASE_URL = 'https://api.jcdrink.com';
+const API_URL = `${API_BASE_URL}/api`;
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -20,6 +22,20 @@ const Navbar = () => {
     removeFromCart,
     clearCart
   } = useCart();
+
+  // Helper function to get correct image URL (same as other files)
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) {
+      return 'https://via.placeholder.com/60x60?text=Product';
+    }
+
+    if (imagePath.startsWith('http')) {
+      return imagePath;
+    }
+
+    const cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+    return `${API_BASE_URL}/${cleanPath}`;
+  };
 
   const handleDropdownToggle = (dropdown) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
@@ -148,7 +164,7 @@ const Navbar = () => {
                   <ul>
                     <li className="active"><a href="/">Home</a></li>
                     <li><a href="/About">About</a></li>
-                    <li><a href="/Product">Product</a></li>
+                    <li><a href="/Product">Products</a></li>
                     <li><a href="/Team">Team</a></li>
                     {/* <li><a href="/BlogPost">Blog</a></li> */}
                     <li><a href="/Contact">Contact Us</a></li>
@@ -188,7 +204,7 @@ const Navbar = () => {
               <ul>
                 <li className="active"><a href="/">Home</a></li>
                 <li><a href="/About">About</a></li>
-                <li><a href="/Product">Product</a></li>
+                <li><a href="/Product">Products</a></li>
                 <li><a href="/Team">Team</a></li>
                 <li><a href="/Contact">Contact Us</a></li>
                 <li>
@@ -223,17 +239,18 @@ const Navbar = () => {
                     {cartItems.map((item) => (
                       <div key={item._id} className="cart-item">
                         <img
-                          src={`${API_URL}/${item.image?.replace(/\\/g, '/')}`}
+                          src={getImageUrl(item.image)}
                           alt={item.title}
                           className="cart-item-image"
                           onError={(e) => {
+                            console.log('Cart image failed to load:', item.image);
                             e.target.src = 'https://via.placeholder.com/60x60?text=Product';
                           }}
                         />
                         <div className="cart-item-details">
                           <h4>{item.title}</h4>
                           <p className="cart-item-category">{item.category}</p>
-                          <p className="cart-item-price">${Number(item.price).toFixed(2)}</p>
+                          <p className="cart-item-price">₹{Number(item.price).toFixed(2)}</p>
                           <div className="quantity-controls">
                             <button
                               className="quantity-btn"
@@ -250,7 +267,7 @@ const Navbar = () => {
                             </button>
                           </div>
                           <p className="item-total">
-                            Total: ${(Number(item.price) * item.quantity).toFixed(2)}
+                            Total: ₹{(Number(item.price) * item.quantity).toFixed(2)}
                           </p>
                         </div>
                         <button
@@ -266,7 +283,7 @@ const Navbar = () => {
                   <div className="cart-summary">
                     <div className="summary-row">
                       <span>Subtotal:</span>
-                      <span>${totalPrice.toFixed(2)}</span>
+                      <span>₹{totalPrice.toFixed(2)}</span>
                     </div>
                     <div className="summary-row">
                       <span>Shipping:</span>
@@ -274,18 +291,17 @@ const Navbar = () => {
                     </div>
                     <div className="summary-row">
                       <span>Tax:</span>
-                      <span>${(totalPrice * 0.1).toFixed(2)}</span>
+                      <span>₹{(totalPrice * 0.1).toFixed(2)}</span>
                     </div>
                     <div className="summary-row total">
                       <span>Total:</span>
-                      <span>${(totalPrice + (totalPrice * 0.1)).toFixed(2)}</span>
+                      <span>₹{(totalPrice + (totalPrice * 0.1)).toFixed(2)}</span>
                     </div>
                   </div>
 
                   <div className="cart-actions">
                     <button className="checkout-btn" onClick={handleCheckout}>
-                      <a href="/CheckoutForm"> Proceed to Checkout (${(totalPrice + (totalPrice * 0.1)).toFixed(2)})</a>
-
+                      <a href="/CheckoutForm"> Proceed to Checkout (₹{(totalPrice + (totalPrice * 0.1)).toFixed(2)})</a>
                     </button>
                     <button className="continue-shopping-btn" onClick={handleCartModalToggle}>
                       Continue Shopping

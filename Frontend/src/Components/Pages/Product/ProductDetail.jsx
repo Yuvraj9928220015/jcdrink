@@ -5,7 +5,9 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../Cart/CartContext';
 import './ProductDetail.css';
 
-const API_URL = 'http://localhost:5000';
+// Fixed API URL - add /api to match other files
+const API_BASE_URL = 'https://api.jcdrink.com';
+const API_URL = `${API_BASE_URL}/api`;
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -19,6 +21,20 @@ export default function ProductDetail() {
     const [selectedTab, setSelectedTab] = useState('description');
     const [selectedSize, setSelectedSize] = useState('');
     const [currentPrice, setCurrentPrice] = useState(0);
+
+    // Helper function to get correct image URL
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) {
+            return 'https://via.placeholder.com/300x300?text=No+Image';
+        }
+
+        if (imagePath.startsWith('http')) {
+            return imagePath;
+        }
+
+        const cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
+        return `${API_BASE_URL}/${cleanPath}`;
+    };
 
     // Scroll to top whenever the component mounts or id changes
     useEffect(() => {
@@ -41,74 +57,52 @@ export default function ProductDetail() {
 
                 console.log('Fetching product with ID:', id);
 
-                const possibleEndpoints = [
-                    `${API_URL}/api/products/${id}`,
-                    `${API_URL}/api/product/${id}`,
-                    `${API_URL}/products/${id}`,
-                    `${API_URL}/product/${id}`
-                ];
+                // Try direct product endpoint first with /api
+                let response = await fetch(`${API_URL}/products/${id}`);
 
-                let response = null;
-                let successfulEndpoint = null;
+                if (!response.ok) {
+                    console.log('Direct fetch failed, trying all products...');
+                    // If direct fetch fails, get all products and find the one we need
+                    const allProductsResponse = await fetch(`${API_URL}/products`);
 
-                for (const endpoint of possibleEndpoints) {
-                    try {
-                        console.log('Trying endpoint:', endpoint);
-                        response = await fetch(endpoint);
-                        if (response.ok) {
-                            successfulEndpoint = endpoint;
-                            console.log('Success with endpoint:', endpoint);
-                            break;
-                        }
-                    } catch (err) {
-                        console.log('Failed endpoint:', endpoint, err);
-                        continue;
-                    }
-                }
-
-                if (!response || !response.ok) {
-                    try {
-                        console.log('Trying to fetch all products...');
-                        const allProductsResponse = await fetch(`${API_URL}/api/products`);
-                        if (allProductsResponse.ok) {
-                            const allProducts = await allProductsResponse.json();
-                            console.log('All products:', allProducts);
-                            const foundProduct = allProducts.find(p =>
-                                (p._id && p._id.toString() === id) ||
-                                (p.id && p.id.toString() === id)
-                            );
-
-                            if (foundProduct) {
-                                console.log('Found product:', foundProduct);
-                                setProduct(foundProduct);
-
-                                // Set initial size and price
-                                if (foundProduct.priceVariations && foundProduct.priceVariations.length > 0) {
-                                    setSelectedSize(foundProduct.priceVariations[0].size);
-                                    setCurrentPrice(foundProduct.priceVariations[0].price);
-                                } else {
-                                    setCurrentPrice(foundProduct.price || 0);
-                                }
-                                return;
-                            }
-                        }
-                    } catch (err) {
-                        console.log('Failed to fetch all products:', err);
+                    if (!allProductsResponse.ok) {
+                        throw new Error(`Failed to fetch products: ${allProductsResponse.status}`);
                     }
 
-                    throw new Error(`Product not found`);
-                }
+                    const allProducts = await allProductsResponse.json();
+                    console.log('All products fetched:', allProducts.length);
 
-                const data = await response.json();
-                console.log('Product data:', data);
-                setProduct(data);
+                    const foundProduct = allProducts.find(p =>
+                        (p._id && p._id.toString() === id) ||
+                        (p.id && p.id.toString() === id)
+                    );
 
-                // Set initial size and price
-                if (data.priceVariations && data.priceVariations.length > 0) {
-                    setSelectedSize(data.priceVariations[0].size);
-                    setCurrentPrice(data.priceVariations[0].price);
+                    if (!foundProduct) {
+                        throw new Error('Product not found');
+                    }
+
+                    console.log('Found product:', foundProduct);
+                    setProduct(foundProduct);
+
+                    // Set initial size and price
+                    if (foundProduct.priceVariations && foundProduct.priceVariations.length > 0) {
+                        setSelectedSize(foundProduct.priceVariations[0].size);
+                        setCurrentPrice(foundProduct.priceVariations[0].price);
+                    } else {
+                        setCurrentPrice(foundProduct.price || 0);
+                    }
                 } else {
-                    setCurrentPrice(data.price || 0);
+                    const data = await response.json();
+                    console.log('Product data:', data);
+                    setProduct(data);
+
+                    // Set initial size and price
+                    if (data.priceVariations && data.priceVariations.length > 0) {
+                        setSelectedSize(data.priceVariations[0].size);
+                        setCurrentPrice(data.priceVariations[0].price);
+                    } else {
+                        setCurrentPrice(data.price || 0);
+                    }
                 }
             } catch (err) {
                 console.error("Error fetching product:", err);
@@ -238,17 +232,16 @@ export default function ProductDetail() {
         <>
             <div className="product-detail-wrapper">
                 <div className="product-detail-container">
-                    {/* Breadcrumb */}
-
                     {/* Main Product Section */}
                     <div className="product-main-section">
                         {/* Product Image */}
                         <div className="productDetail-image-container">
                             <img
-                                src={product.image ? `${API_URL}/${product.image.replace(/\\/g, '/')}` : 'https://via.placeholder.com/500x500?text=No+Image'}
+                                src={getImageUrl(product.image)}
                                 alt={product.title || 'Product'}
                                 className="product-image"
                                 onError={(e) => {
+                                    console.log('Image failed to load:', product.image);
                                     e.target.src = 'https://via.placeholder.com/500x500?text=Image+Error';
                                 }}
                             />
@@ -355,12 +348,12 @@ export default function ProductDetail() {
                         <div className="tab-content-area">
                             {selectedTab === 'description' && (
                                 <div className="tab-content">
-                                    <h3>Product Description</h3>
+                                    <h3 id='Product-Details'>Product Description</h3>
                                     <p>{product.description || "A drink that needs no introduction. There are only a handful of experiences that tie generations together; cheering for your favourite cricket team or bonding over old 90's movies. This product has been part of those shared experiences for decades."}</p>
 
                                     {product.priceVariations && product.priceVariations.length > 0 && (
                                         <>
-                                            <h4 style={{ marginTop: '24px' }}>Available Sizes & Pricing:</h4>
+                                            <h4 id='Product-Details' style={{ marginTop: '24px' }}>Available Sizes & Pricing:</h4>
                                             <ul className="product-specs">
                                                 {product.priceVariations.map((variation) => (
                                                     <li key={variation.size}>
@@ -371,7 +364,7 @@ export default function ProductDetail() {
                                         </>
                                     )}
 
-                                    <h4 style={{ marginTop: '24px' }}>Product Details:</h4>
+                                    <h4 id='Product-Details' style={{ marginTop: '24px' }}>Product Details:</h4>
                                     <ul className="product-specs">
                                         <li><span>Category: </span> {product.category || 'Beverage'}</li>
                                         <li><span>Product ID: </span> {product._id ? product._id.slice(-8).toUpperCase() : 'N/A'}</li>
@@ -384,7 +377,7 @@ export default function ProductDetail() {
 
                             {selectedTab === 'additional' && (
                                 <div className="tab-content">
-                                    <h3>Additional Information</h3>
+                                    <h3 id='Product-Details'>Additional Information</h3>
                                     <table className="additional-info-table">
                                         <tbody>
                                             <tr>

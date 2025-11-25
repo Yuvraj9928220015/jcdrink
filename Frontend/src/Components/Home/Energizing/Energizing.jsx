@@ -3,6 +3,7 @@ import './Energizing.css';
 
 export default function Energizing() {
     return (
+       <>
         <div className="energizing">
             {/* Background Video */}
             <div className="energizing-video">
@@ -40,7 +41,7 @@ export default function Energizing() {
                                     <p>Fuel your grind with explosive caffeine energy and bold flavor that keeps you fierce, focused, and fearless.</p>
                                 </div>
                                 <div className="energizing-feature">
-                                    <h3>Feel The X. Live The Power</h3>
+                                    <h3>Feel The X Factor Live The Power</h3>
                                     <p>From workouts to wild nights — X Factor gives you the energy to break limits, dominate challenges, and own your zone.</p>
                                 </div>
                             </div>
@@ -63,5 +64,6 @@ export default function Energizing() {
                 </div>
             </div>
         </div>
+       </>
     );
 }

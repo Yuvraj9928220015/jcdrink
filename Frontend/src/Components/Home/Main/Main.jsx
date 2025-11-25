@@ -14,10 +14,10 @@ const Main = () => {
             image: '/Cold-1.jpg',
             options: {
                 '1 BOTTLE': {
-                    price: '24.99',
+                    price: '20',
                 },
                 '3 BOTTLES': {
-                    price: '69.99',
+                    price: '60',
                 }
             }
         },
@@ -26,10 +26,10 @@ const Main = () => {
             image: '/Cold-2.jpg',
             options: {
                 '1 BOTTLE': {
-                    price: '29.99'
+                    price: '30'
                 },
                 '3 BOTTLES': {
-                    price: '79.99',
+                    price: '70',
                 }
             }
         },
@@ -38,10 +38,10 @@ const Main = () => {
             image: '/Cold-3.jpg',
             options: {
                 '1 BOTTLE': {
-                    price: '22.99',
+                    price: '20',
                 },
                 '3 BOTTLES': {
-                    price: '64.99',
+                    price: '60',
                 }
             }
         },

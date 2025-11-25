@@ -65,8 +65,6 @@ export default function Privacy() {
                                         <li>Improve our Products, website, and customer experience.</li>
                                         <li>Send you updates, offers, and promotions (unless you opt-out).</li>
                                         <li>Respond to your queries, complaints, or feedback</li>
-                                        <li></li>
-                                        <li></li>
                                     </ul>
                                 </div>
 

@@ -31,7 +31,7 @@ export default function CheckoutForm() {
         setStatus({ message: '', type: '' });
 
         try {
-            const response = await fetch('http://localhost:5000/api/checkout', {
+            const response = await fetch('https://jcdrink.com/api/api/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
