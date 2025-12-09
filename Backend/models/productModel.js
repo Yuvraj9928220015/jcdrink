@@ -1,11 +1,26 @@
 // models/productModel.js
 const mongoose = require('mongoose');
 
+// Price Variation Schema
 const priceVariationSchema = new mongoose.Schema({
     size: {
         type: String,
         required: true,
-        enum: ['100 ML', '160 ML', '200 ML', '200 ML', '250 ML', '300 ML', '500 ML', '600 ML', '600ML', '800 ML']
+        enum: [
+            '100 ML',
+            '160 ML',
+            '200 ML',
+            '250 ML',
+            '300 ML',
+            '500 ML',
+            '600 ML',
+            '800 ML'
+        ]
+    },
+    type: {
+        type: String,
+        required: false,
+        trim: true
     },
     price: {
         type: Number,
@@ -14,6 +29,7 @@ const priceVariationSchema = new mongoose.Schema({
     }
 });
 
+// Main Product Schema
 const productSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -46,7 +62,7 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Virtual field to get min and max price
+// Virtual price range field
 productSchema.virtual('priceRange').get(function () {
     if (!this.priceVariations || this.priceVariations.length === 0) {
         return { min: 0, max: 0 };
@@ -58,7 +74,7 @@ productSchema.virtual('priceRange').get(function () {
     };
 });
 
-// Ensure virtuals are included in JSON
+// Include virtual fields in JSON & object responses
 productSchema.set('toJSON', { virtuals: true });
 productSchema.set('toObject', { virtuals: true });
 
