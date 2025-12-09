@@ -5,7 +5,7 @@ const priceVariationSchema = new mongoose.Schema({
     size: {
         type: String,
         required: true,
-        enum: ['100 ML', '200 ML', '300 ML', '500 ML', '800 ML']
+        enum: ['100 ML', '160 ML', '200 ML', '200 ML', '250 ML', '300 ML', '500 ML', '600 ML', '600ML', '800 ML']
     },
     price: {
         type: Number,
