@@ -9,21 +9,15 @@ const priceVariationSchema = new mongoose.Schema({
         enum: [
             '100 ML',
             '160 ML',
-            '200 ML',     // First 200 ML
-            '200 ML',     // Duplicate 200 ML (for different variants)
-            '250 ML',     // THIS WAS MISSING - causing your error
+            '200 ML - 24 Pack',
+            '200 ML - 30 Pack',
+            '250 ML',
             '300 ML',
             '500 ML',
-            '600 ML',     // First 600 ML
-            '600 ML',     // Duplicate 600 ML (for different variants)
-            '750 ML',
-            '800 ML'
+            '600 ML',
+            '600 ML - With Sugar',
+            '750 ML'
         ]
-    },
-    type: {
-        type: String,
-        required: false,
-        trim: true
     },
     price: {
         type: Number,
