@@ -31,7 +31,7 @@
 }
 
 .icon-btn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #0000001a;
 }
 
 /* Cart Modal Styles */
@@ -41,7 +41,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: #00000080;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,7 +295,7 @@
 .checkout-btn:hover {
   background: #047857;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+  box-shadow: 0 4px 12px #0596694d;
 }
 
 .checkout-btn:active {
@@ -363,7 +363,7 @@
 .add-to-cart:hover {
   background: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px #3b82f64d;
 }
 
 .add-to-cart:active {

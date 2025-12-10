@@ -39,7 +39,7 @@ export default function NFTMarketplace() {
                 <div data-aos="fade-up"
                     data-aos-duration="3000" className="container" id='NFTMarketplace'>
                     <div className="Refreshing-content">
-                        <img src="/Refreshing.png" alt="" />
+                        <img src="/Refreshing.webp" alt="" />
                         <div className="Refreshing-text">
                             JC Drink isn’t just a drink — it’s full-on desi swag in every sip!
                             From college adda to road trips and gully hangouts — JC Drink brings the ultimate refreshment wala vibe!
@@ -66,7 +66,7 @@ export default function NFTMarketplace() {
                     <div className="content-right">
                         <div className="image-container">
                             <img
-                                src="/Main-Banner-2.png"
+                                src="/Main-Banner-2.webp"
                                 alt="Digital Art NFT"
                                 className="nft-image image-loaded"
                                 onError={(e) => {

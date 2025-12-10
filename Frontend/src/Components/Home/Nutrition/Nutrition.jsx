@@ -18,7 +18,7 @@ export default function Nutrition() {
                         <div data-aos="zoom-in" className="col-lg-5 col-md-5 col-sm-12 col-12">
                             <div className="Nutrition-Box-image">
                                 <div className="image-glow"></div>
-                                <img src="/Main-Banner-1.png" alt="Citrus Blast Energy Drink" />
+                                <img src="/Main-Banner-1.webp" alt="Citrus Blast Energy Drink" />
                                 <div className="floating-elements">
                                     <div className="floating-dot dot-1"></div>
                                     <div className="floating-dot dot-2"></div>

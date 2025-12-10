@@ -143,6 +143,8 @@ const Navbar = () => {
     { text: 'Blog Posts', path: '/BlogPost' }
   ];
 
+  console.log(archiveItems)
+
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
 
@@ -155,7 +157,7 @@ const Navbar = () => {
               <div className="navbar-logo-section">
                 <div className="navbar-logo">
                   <a href="/">
-                    <img src="./jcDrink-logo.png" alt="Logo" />
+                    <img src="./jcDrink-logo.webp" alt="Logo" />
                   </a>
                 </div>
               </div>
@@ -166,7 +168,6 @@ const Navbar = () => {
                     <li><a href="/About">About</a></li>
                     <li><a href="/Product">Products</a></li>
                     <li><a href="/Team">Team</a></li>
-                    {/* <li><a href="/BlogPost">Blog</a></li> */}
                     <li><a href="/Contact">Contact Us</a></li>
                   </ul>
                 </div>

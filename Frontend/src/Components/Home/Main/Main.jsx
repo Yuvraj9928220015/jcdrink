@@ -11,7 +11,7 @@ const Main = () => {
     const productData = {
         product1: {
             name: 'VITAMIN BOOST',
-            image: '/Cold-1.jpg',
+            image: '/Cold-1.webp',
             options: {
                 '1 BOTTLE': {
                     price: '20',
@@ -23,19 +23,19 @@ const Main = () => {
         },
         product2: {
             name: 'ENERGY PLUS',
-            image: '/Cold-2.jpg',
+            image: '/Cold-2.webp',
             options: {
                 '1 BOTTLE': {
                     price: '30'
                 },
                 '3 BOTTLES': {
-                    price: '70',
+                    price: '90',
                 }
             }
         },
         product3: {
             name: 'NATURAL CARE',
-            image: '/Cold-3.jpg',
+            image: '/Cold-3.webp',
             options: {
                 '1 BOTTLE': {
                     price: '20',
@@ -85,14 +85,14 @@ const Main = () => {
                     onClick={() => handleOptionSelect(productId, '3 BOTTLES')}
                     className={`selection-btn ${selectedOptions[productId] === '3 BOTTLES' ? 'active' : ''}`}
                 >
-                    3 PACK
+                    3 BOTTLE
                 </button>
             </div>
 
             {/* Price Section */}
             <div className="price-section">
                 <div className="price">
-                    {product.options[selectedOptions[productId]].price}
+                    ₹ {product.options[selectedOptions[productId]].price}
                 </div>
             </div>
 

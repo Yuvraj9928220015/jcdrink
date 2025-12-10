@@ -3,7 +3,7 @@
     height: 100vh;
     width: 100%;
     position: relative;
-    background-image: url(/public/Main-Banner-5.jpg);
+    background-image: url(/public/Main-Banner-5.webp);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
     .Header-hero-section {
         width: 100%;
         height: 100vh;
-        background-image: url(/public/SugarFree-Banner.jpg);
+        background-image: url(/public/SugarFree-Banner.webp);
         object-fit: contain;
         object-position: center;
         background-repeat: no-repeat;

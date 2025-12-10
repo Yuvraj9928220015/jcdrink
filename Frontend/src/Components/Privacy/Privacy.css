@@ -85,19 +85,13 @@
     }
 }
 
-
-#Privacy-Policy {
-    min-width: 1600px;
-}
-
-
 .Privacy-Policy-title {
-    font-size: 30px;
+    font-size: 34px;
     padding: 20px 0px;
 }
 
 .Privacy-Policy-des {
     letter-spacing: 1px;
-    font-size: 17px;
+    font-size: 19px;
     line-height: 29px;
 }

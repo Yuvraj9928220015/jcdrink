@@ -1,17 +1,26 @@
 // src/components/ProductDetail/ProductDetail.jsx
-
+import { Helmet } from "react-helmet-async";
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../Cart/CartContext';
 import './ProductDetail.css';
 
-// Fixed API URL - add /api to match other files
 const API_BASE_URL = 'https://api.jcdrink.com';
 const API_URL = `${API_BASE_URL}/api`;
+
+const createSlug = (title) => {
+    return title
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+};
 
 export default function ProductDetail() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const { addToCart } = useCart();
 
     const [product, setProduct] = useState(null);
@@ -36,7 +45,6 @@ export default function ProductDetail() {
         return `${API_BASE_URL}/${cleanPath}`;
     };
 
-    // Scroll to top whenever the component mounts or id changes
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -52,57 +60,47 @@ export default function ProductDetail() {
                 setError(null);
 
                 if (!id || id.trim() === '') {
-                    throw new Error('Invalid product ID');
+                    throw new Error('Invalid product identifier');
                 }
 
-                console.log('Fetching product with ID:', id);
+                console.log('Fetching product with slug:', id);
 
-                // Try direct product endpoint first with /api
-                let response = await fetch(`${API_URL}/products/${id}`);
+                // Get all products
+                const allProductsResponse = await fetch(`${API_URL}/products`);
 
-                if (!response.ok) {
-                    console.log('Direct fetch failed, trying all products...');
-                    // If direct fetch fails, get all products and find the one we need
-                    const allProductsResponse = await fetch(`${API_URL}/products`);
+                if (!allProductsResponse.ok) {
+                    throw new Error(`Failed to fetch products: ${allProductsResponse.status}`);
+                }
 
-                    if (!allProductsResponse.ok) {
-                        throw new Error(`Failed to fetch products: ${allProductsResponse.status}`);
-                    }
+                const allProducts = await allProductsResponse.json();
+                console.log('All products fetched:', allProducts.length);
 
-                    const allProducts = await allProductsResponse.json();
-                    console.log('All products fetched:', allProducts.length);
+                let foundProduct;
 
-                    const foundProduct = allProducts.find(p =>
-                        (p._id && p._id.toString() === id) ||
-                        (p.id && p.id.toString() === id)
+                if (location.state?.productId) {
+                    foundProduct = allProducts.find(p =>
+                        (p._id && p._id.toString() === location.state.productId) ||
+                        (p.id && p.id.toString() === location.state.productId)
                     );
-
-                    if (!foundProduct) {
-                        throw new Error('Product not found');
-                    }
-
-                    console.log('Found product:', foundProduct);
-                    setProduct(foundProduct);
-
-                    // Set initial size and price
-                    if (foundProduct.priceVariations && foundProduct.priceVariations.length > 0) {
-                        setSelectedSize(foundProduct.priceVariations[0].size);
-                        setCurrentPrice(foundProduct.priceVariations[0].price);
-                    } else {
-                        setCurrentPrice(foundProduct.price || 0);
-                    }
                 } else {
-                    const data = await response.json();
-                    console.log('Product data:', data);
-                    setProduct(data);
+                    foundProduct = allProducts.find(p => {
+                        const productSlug = createSlug(p.title || '');
+                        return productSlug === id;
+                    });
+                }
 
-                    // Set initial size and price
-                    if (data.priceVariations && data.priceVariations.length > 0) {
-                        setSelectedSize(data.priceVariations[0].size);
-                        setCurrentPrice(data.priceVariations[0].price);
-                    } else {
-                        setCurrentPrice(data.price || 0);
-                    }
+                if (!foundProduct) {
+                    throw new Error('Product not found');
+                }
+
+                console.log('Found product:', foundProduct);
+                setProduct(foundProduct);
+
+                if (foundProduct.priceVariations && foundProduct.priceVariations.length > 0) {
+                    setSelectedSize(foundProduct.priceVariations[0].size);
+                    setCurrentPrice(foundProduct.priceVariations[0].price);
+                } else {
+                    setCurrentPrice(foundProduct.price || 0);
                 }
             } catch (err) {
                 console.error("Error fetching product:", err);
@@ -115,10 +113,10 @@ export default function ProductDetail() {
         if (id) {
             fetchProduct();
         } else {
-            setError('No product ID provided');
+            setError('No product identifier provided');
             setLoading(false);
         }
-    }, [id]);
+    }, [id, location.state]);
 
     const handleSizeChange = (e) => {
         const size = e.target.value;
@@ -230,6 +228,21 @@ export default function ProductDetail() {
 
     return (
         <>
+            <Helmet>
+                <title>{product?.title} – JC Drink</title>
+
+                <meta
+                    name="description"
+                    content={
+                        product?.shortDescription
+                            ? product.shortDescription
+                            : `Explore ${product?.title} by JC Drink with refreshing taste, pure ingredients, and complete nutritional details.`
+                    }
+                />
+
+                <link rel="canonical" href={`https://jcdrink.com/product/${product?._id}`} />
+            </Helmet>
+
             <div className="product-detail-wrapper">
                 <div className="product-detail-container">
                     {/* Main Product Section */}

@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="logo">
                 <div className="logo-container">
                   <img
-                    src="./jcDrink-logo.png"
+                    src="./jcDrink-logo.webp"
                     alt="Company Logo"
                   />
                 </div>
@@ -42,22 +42,52 @@ export default function Footer() {
               <h3 className="footer-title">Contact</h3>
               <ul className="footer-links">
                 <li className="footer-link">+91-8432221711</li>
-                <li className="footer-link">Info@balajibeverages.com </li>
+                <li className="footer-link">info@balajibeverages.com</li>
               </ul>
               <div className="social-icons">
-                <div id='Social-Icon' className="social-icon">
+
+                <a
+                  // href=""
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  id='Footer-social-icon'
+                >
                   <Facebook size={20} />
-                </div>
-                <div id='Social-Icon' className="social-icon">
+                </a>
+
+                <a
+                  // href=""
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  id='Footer-social-icon'
+                >
                   <Twitter size={20} />
-                </div>
-                <div id='Social-Icon' className="social-icon">
+                </a>
+
+                <a
+                  // href=""
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  id='Footer-social-icon'
+                >
                   <Linkedin size={20} />
-                </div>
-                <div id='Social-Icon' className="social-icon">
+                </a>
+
+                <a
+                  href="https://www.instagram.com/jcdrinkofficial/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon"
+                  id='Footer-social-icon'
+                >
                   <FaInstagram size={20} />
-                </div>
+                </a>
+
               </div>
+
             </div>
           </div>
         </div>

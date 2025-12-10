@@ -1,13 +1,21 @@
 // src/components/Product/Product.jsx
-
+import { Helmet } from "react-helmet-async";
 import { useState, useEffect } from 'react';
 import { useCart } from '../Cart/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import "./Product.css";
 
-// Fixed API URL - add /api to match ProductData.jsx
 const API_BASE_URL = 'https://api.jcdrink.com';
 const API_URL = `${API_BASE_URL}/api`;
+
+const createSlug = (title) => {
+    return title
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+};
 
 export default function Product() {
     const [products, setProducts] = useState([]);
@@ -84,13 +92,14 @@ export default function Product() {
             return imagePath;
         }
 
-        // Clean the path and use API_BASE_URL
+
         const cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
         return `${API_BASE_URL}/${cleanPath}`;
     };
 
-    const handleProductClick = (productId) => {
-        navigate(`/product/${productId}`);
+    const handleProductClick = (product) => {
+        const slug = createSlug(product.title);
+        navigate(`/product/${slug}`, { state: { productId: product._id || product.id } });
     };
 
     const handleAddToCart = (e, product) => {
@@ -98,7 +107,8 @@ export default function Product() {
         e.stopPropagation();
 
         if (product.priceVariations && product.priceVariations.length > 0) {
-            navigate(`/product/${product._id || product.id}`);
+            const slug = createSlug(product.title);
+            navigate(`/product/${slug}`, { state: { productId: product._id || product.id } });
             return;
         }
 
@@ -144,9 +154,18 @@ export default function Product() {
 
     return (
         <>
+            <Helmet>
+                <title>JC Drink Products – Premium Cold Drink</title>
+                <meta
+                    name="description"
+                    content="Explore JC Drink’s premium range of cold drinks, fruit beverages, and refreshing natural flavors made with pure ingredients. Enjoy delicious taste and true refreshment."
+                />
+                <link rel="canonical" href="https://jcdrink.com/product" />
+            </Helmet>
+
             <div className="Product-container">
                 <div className="Product-container-content">
-                    <div className="about-heading">Our Products</div>
+                    <h1 className="about-heading">Our Products</h1>
                     <div className="Product-container-content-des">Browse our collection of amazing products.</div>
                 </div>
 
@@ -161,7 +180,7 @@ export default function Product() {
                                 <div
                                     key={product._id || product.id}
                                     className="product-item"
-                                    onClick={() => handleProductClick(product._id || product.id)}
+                                    onClick={() => handleProductClick(product)}
                                     style={{ cursor: 'pointer' }}
                                 >
                                     <div className="product-card">

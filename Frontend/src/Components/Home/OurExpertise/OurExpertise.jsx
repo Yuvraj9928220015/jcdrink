@@ -28,7 +28,7 @@ function OurExpertise() {
                         >
                             <div className="cta-card animated-card">
                                 <div className="cta-image">
-                                    <img src="/Main-Banner-3.png" alt="Team working" />
+                                    <img src="/Main-Banner-3.webp" alt="Team working" />
                                     <div className="image-overlay"></div>
                                 </div>
 

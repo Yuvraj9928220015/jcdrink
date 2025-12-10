@@ -1,3 +1,4 @@
+
 // src/App.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -7,7 +8,19 @@ import './ProductData.css';
 const API_BASE_URL = 'https://api.jcdrink.com';
 const API_URL = `${API_BASE_URL}/api`;
 
-const AVAILABLE_SIZES = ['100 ML', '200 ML', '300 ML', '500 ML', '750 ML', '800 ML', '1 Liter', '2 Liter'];
+// Updated available sizes with unique identifiers
+const AVAILABLE_SIZES = [
+    '100 ML',
+    '160 ML',
+    '200 ML - 24 Pack',
+    '200 ML - 30 Pack',
+    '250 ML',
+    '300 ML',
+    '500 ML',
+    '600 ML',
+    '600 ML - With Sugar',
+    '750 ML'
+];
 
 export default function ProductData() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -97,15 +110,15 @@ export default function ProductData() {
     // Function to get correct image URL
     const getImageUrl = (imagePath) => {
         if (!imagePath) return '';
-        
+
         // Remove leading slashes and backslashes
         let cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
-        
+
         // If already a full URL, return as is
         if (cleanPath.startsWith('http')) {
             return cleanPath;
         }
-        
+
         // Return full URL with API base
         return `${API_BASE_URL}/${cleanPath}`;
     };
@@ -148,6 +161,14 @@ export default function ProductData() {
         const hasEmptyPrices = currentProduct.priceVariations.some(v => !v.price || v.price <= 0);
         if (hasEmptyPrices) {
             alert('Please enter valid prices for all sizes!');
+            return;
+        }
+
+        // Validation: Check for duplicate sizes
+        const sizes = currentProduct.priceVariations.map(v => v.size);
+        const uniqueSizes = new Set(sizes);
+        if (sizes.length !== uniqueSizes.size) {
+            alert('Each size variation must be unique! Please select different sizes.');
             return;
         }
 

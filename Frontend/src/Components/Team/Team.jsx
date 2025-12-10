@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Facebook, Twitter, Linkedin, Check } from 'lucide-react';
 import { FaInstagram } from "react-icons/fa6";
 import "./Team.css"
@@ -8,7 +9,7 @@ export default function Team() {
             id: 1,
             name: "John Mayer",
             position: "VP of Product",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            image: "/Team-6.jpg",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "blue"
         },
@@ -16,7 +17,7 @@ export default function Team() {
             id: 2,
             name: "Linda Rose",
             position: "VP of Design",
-            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            image: "/Team-5.JPG",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "pink"
         },
@@ -24,7 +25,7 @@ export default function Team() {
             id: 3,
             name: "Jessica Janet",
             position: "Project Manager",
-            image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            image: "/Team-4.JPG",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "green"
         },
@@ -32,7 +33,7 @@ export default function Team() {
             id: 4,
             name: "Samuel Lane",
             position: "Creative Director",
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            image: "/Team-3.JPG",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "blue"
         },
@@ -40,7 +41,7 @@ export default function Team() {
             id: 5,
             name: "Laurel Schaela",
             position: "Supervisor",
-            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            image: "/Team-2.JPG",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "pink"
         },
@@ -48,7 +49,7 @@ export default function Team() {
             id: 6,
             name: "Justin Hubner",
             position: "Coordinator",
-            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+            image: "/Team-1.JPG",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "green"
         }
@@ -56,6 +57,16 @@ export default function Team() {
 
     return (
         <>
+
+            <Helmet>
+                <title>Meet Our Team – Experts Behind JC Drink’s</title>
+                <meta
+                    name="description"
+                    content="Meet the talented and passionate team behind JC Drink, dedicated to crafting high-quality cold drinks and delivering refreshing flavors with expert care and commitment."
+                />
+                <link rel="canonical" href="https://jcdrink.com/team" />
+            </Helmet>
+
             <div className="min-h-screen bg-gray-50">
                 <div className="team-container">
                     <div className="main-content">
@@ -72,7 +83,7 @@ export default function Team() {
                             <div className="ceo-image-container">
                                 <div className="ceo-badge">CEO & Founder</div>
                                 <img
-                                    src="/Screenshot.png"
+                                    src="/Screenshot.webp"
                                     alt="Darwin Luiz - CEO & Founder"
                                     className="ceo-image"
                                 />
