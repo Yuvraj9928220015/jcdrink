@@ -1,23 +1,26 @@
 // models/productModel.js
 const mongoose = require('mongoose');
 
+// IMPORTANT: These sizes MUST match EXACTLY with frontend AVAILABLE_SIZES array
+const VALID_SIZES = [
+    '100 ML',
+    '160 ML',
+    '200 ML - 24 Pack',
+    '200 ML - 30 Pack',
+    '250 ML',
+    '300 ML',
+    '500 ML',
+    '600 ML',
+    '600 ML - With Sugar',
+    '750 ML'
+];
+
 // Price Variation Schema
 const priceVariationSchema = new mongoose.Schema({
     size: {
         type: String,
         required: true,
-        enum: [
-            '100 ML',
-            '160 ML',
-            '200 ML - 24 Pack',
-            '200 ML - 30 Pack',
-            '250 ML',
-            '300 ML',
-            '500 ML',
-            '600 ML',
-            '600 ML - With Sugar',
-            '750 ML'
-        ]
+        enum: VALID_SIZES
     },
     price: {
         type: Number,
@@ -59,6 +62,18 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 });
 
+// Middleware to validate unique sizes before saving
+productSchema.pre('save', function(next) {
+    const sizes = this.priceVariations.map(v => v.size);
+    const uniqueSizes = new Set(sizes);
+    
+    if (sizes.length !== uniqueSizes.size) {
+        return next(new Error('Duplicate sizes are not allowed'));
+    }
+    
+    next();
+});
+
 // Virtual price range field
 productSchema.virtual('priceRange').get(function () {
     if (!this.priceVariations || this.priceVariations.length === 0) {
@@ -74,5 +89,9 @@ productSchema.virtual('priceRange').get(function () {
 // Include virtual fields in JSON & object responses
 productSchema.set('toJSON', { virtuals: true });
 productSchema.set('toObject', { virtuals: true });
+
+// Log valid sizes when model loads (for debugging)
+console.log('✅ Product Model Loaded');
+console.log('📋 Valid Sizes:', VALID_SIZES);
 
 module.exports = mongoose.model('Product', productSchema);
