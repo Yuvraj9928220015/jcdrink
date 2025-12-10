@@ -9,7 +9,7 @@ export default function Team() {
             id: 1,
             name: "John Mayer",
             position: "VP of Product",
-            image: "/Team-6.jpg",
+            image: "/Team-8.png",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "blue"
         },
@@ -17,7 +17,7 @@ export default function Team() {
             id: 2,
             name: "Linda Rose",
             position: "VP of Design",
-            image: "/Team-5.JPG",
+            image: "/Team-7.png",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "pink"
         },
@@ -25,7 +25,7 @@ export default function Team() {
             id: 3,
             name: "Jessica Janet",
             position: "Project Manager",
-            image: "/Team-4.JPG",
+            image: "/Team-9.png",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "green"
         },
@@ -33,7 +33,7 @@ export default function Team() {
             id: 4,
             name: "Samuel Lane",
             position: "Creative Director",
-            image: "/Team-3.JPG",
+            image: "/Team-10.png",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "blue"
         },
@@ -41,7 +41,7 @@ export default function Team() {
             id: 5,
             name: "Laurel Schaela",
             position: "Supervisor",
-            image: "/Team-2.JPG",
+            image: "/Team-11.png",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "pink"
         },
@@ -49,7 +49,7 @@ export default function Team() {
             id: 6,
             name: "Justin Hubner",
             position: "Coordinator",
-            image: "/Team-1.JPG",
+            image: "/Team-12.png",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
             bgColor: "green"
         }

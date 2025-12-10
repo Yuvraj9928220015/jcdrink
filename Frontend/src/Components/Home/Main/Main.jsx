@@ -14,10 +14,10 @@ const Main = () => {
             image: '/Cold-1.webp',
             options: {
                 '1 BOTTLE': {
-                    price: '20',
+                    price: '10',
                 },
                 '3 BOTTLES': {
-                    price: '60',
+                    price: '30',
                 }
             }
         },
@@ -26,10 +26,10 @@ const Main = () => {
             image: '/Cold-2.webp',
             options: {
                 '1 BOTTLE': {
-                    price: '30'
+                    price: '10'
                 },
                 '3 BOTTLES': {
-                    price: '90',
+                    price: '30',
                 }
             }
         },
@@ -38,10 +38,10 @@ const Main = () => {
             image: '/Cold-3.webp',
             options: {
                 '1 BOTTLE': {
-                    price: '20',
+                    price: '10',
                 },
                 '3 BOTTLES': {
-                    price: '60',
+                    price: '30',
                 }
             }
         },
