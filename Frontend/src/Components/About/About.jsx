@@ -42,7 +42,7 @@ export default function About() {
                                     </p>
                                     <p className="about-paragraph">
                                         What sets us apart is our founder's deep understanding of consumer needs. With over a
-                                        decade of experience in food and beverage manufacturing, <strong>Mr. Rajesh Sadhwani</strong> continues
+                                        decade of experience in food and beverage manufacturing, <strong>Mr. Rajeyssh Saddhwani</strong> continues
                                         to lead the company with a hands-on approach, focused on quality, trust, and customer
                                         satisfaction.
                                     </p>

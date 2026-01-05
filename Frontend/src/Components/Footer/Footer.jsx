@@ -28,10 +28,10 @@ export default function Footer() {
               <h3 className="footer-title">Quick Links</h3>
               <ul className="footer-links">
                 <li><a href="/" className="footer-link">Home</a></li>
-                <li><a href="/About" className="footer-link">About Us</a></li>
-                <li><a href="/Product" className="footer-link">Products</a></li>
-                <li><a href="/Privacy" className="footer-link">Privacy Policy</a></li>
-                <li><a href="/Contact" className="footer-link">Contact Us</a></li>
+                <li><a href="/about" className="footer-link">About Us</a></li>
+                <li><a href="/product" className="footer-link">Products</a></li>
+                <li><a href="/privacy" className="footer-link">Privacy Policy</a></li>
+                <li><a href="/contact" className="footer-link">Contact Us</a></li>
               </ul>
             </div>
           </div>

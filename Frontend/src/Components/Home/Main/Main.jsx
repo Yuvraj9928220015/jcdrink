@@ -60,6 +60,14 @@ const Main = () => {
         console.log(`Product: ${product.name} - Selected: ${selectedOption} - Price: $${product.options[selectedOption].price}`);
     };
 
+
+// New handleShopClicks Content
+    const handleShopClicks = (productId) => {
+        const product = productData[productId];
+        const selectedOptions = selectedOptions[productId];
+        console.log(`Product: ${product.name} - Selected: ${selectedOptions} - Price: $${product.options[selectedOptions].price} `)
+    }
+
     const renderProductCard = (productId, product) => (
         <div key={productId} className="vitamin-card">
             <div className="decorative-elements">

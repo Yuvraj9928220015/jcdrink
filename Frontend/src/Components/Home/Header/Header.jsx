@@ -9,7 +9,7 @@ export default function Header() {
   const slides = [
     {
       mobileImage: '/X-Factor-mobile.jpg',
-      desktopImage: '/X-Factor-Banner.jpg'
+      desktopImage: '/X-Factor.jpg'
     },
     {
       mobileImage: '/Just-Drink-mobile.jpg',

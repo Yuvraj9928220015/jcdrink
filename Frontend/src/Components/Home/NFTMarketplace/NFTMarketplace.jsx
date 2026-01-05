@@ -32,6 +32,8 @@ export default function NFTMarketplace() {
             e.target.classList.remove('button-clicked');
         }, 300);
     };
+    
+    console.log(handleButtonClick)
 
     return (
         <>

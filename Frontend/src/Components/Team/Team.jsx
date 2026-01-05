@@ -4,62 +4,58 @@ import { FaInstagram } from "react-icons/fa6";
 import "./Team.css"
 
 export default function Team() {
-    const teamMembers = [
+    // Managers
+    const managers = [
         {
             id: 1,
-            name: "John Mayer",
-            position: "VP of Product",
-            image: "/Team-8.png",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
+            name: "Mukul",
+            position: "General manager",
+            image: "/Mukul.png",
+            description: "General manager",
             bgColor: "blue"
         },
         {
-            id: 2,
-            name: "Linda Rose",
-            position: "VP of Design",
-            image: "/Team-7.png",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
-            bgColor: "pink"
-        },
-        {
             id: 3,
-            name: "Jessica Janet",
-            position: "Project Manager",
-            image: "/Team-9.png",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
+            name: "Manish sharma",
+            position: "Human Resources manager",
+            image: "/Manish-sharma.png",
+            description: "Human Resources manager",
             bgColor: "green"
         },
+    ];
+
+    // Sales Team
+    const salesTeam = [
         {
             id: 4,
-            name: "Samuel Lane",
-            position: "Creative Director",
-            image: "/Team-10.png",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
+            name: "Ashraf khan",
+            position: "Sales head south zone",
+            image: "/Ashraf-khan.png",
+            description: "Sales head south zone",
             bgColor: "blue"
         },
         {
             id: 5,
-            name: "Laurel Schaela",
-            position: "Supervisor",
-            image: "/Team-11.png",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
+            name: "Pankaj kumar sharma",
+            position: "Sales head north zone",
+            image: "/Pankaj-sharma.png",
+            description: "Sales head north zone",
             bgColor: "pink"
         },
         {
             id: 6,
-            name: "Justin Hubner",
-            position: "Coordinator",
-            image: "/Team-12.png",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi magnam voluptatibus minima accusamus.",
+            name: "Naresh Jurani",
+            position: "Sales head centre zone",
+            image: "/Naresh-Jurani.png",
+            description: "Sales head centre zone",
             bgColor: "green"
         }
     ];
 
     return (
         <>
-
             <Helmet>
-                <title>Meet Our Team – Experts Behind JC Drink’s</title>
+                <title>Meet Our Team – Experts Behind JC Drink's</title>
                 <meta
                     name="description"
                     content="Meet the talented and passionate team behind JC Drink, dedicated to crafting high-quality cold drinks and delivering refreshing flavors with expert care and commitment."
@@ -81,32 +77,21 @@ export default function Team() {
                         {/* CEO Section */}
                         <div data-aos="fade-zoom-in" className="ceo-section">
                             <div className="ceo-image-container">
-                                <div className="ceo-badge">CEO & Founder</div>
                                 <img
-                                    src="/Screenshot.webp"
+                                    src="/Screenshot-2025.png"
                                     alt="Darwin Luiz - CEO & Founder"
                                     className="ceo-image"
                                 />
                             </div>
                             <div className="ceo-content">
+                                <div className="ceo-position">CEO & Founder</div>
                                 <h2 className="ceo-name"> Shree Balaji Foods </h2>
                                 <p className="ceo-description">
-                                    Since establishing the company in 2012, Mr. Rajesh Sadhwani, our CEO & Founder, has demonstrated unwavering dedication and vision in building a brand that stands for quality, innovation, and excellence. His relentless commitment to growth, attention to detail, and entrepreneurial spirit have been the driving forces behind the company’s expansion across urban and rural markets in PAN India.
+                                    Since establishing the company in 2012, Mr. Rajeyssh Saddhwani, our CEO & Founder, has demonstrated unwavering dedication and vision in building a brand that stands for quality, innovation, and excellence. His relentless commitment to growth, attention to detail, and entrepreneurial spirit have been the driving forces behind the company's expansion across urban and rural markets in PAN India.
                                 </p>
-                                <div className="social-icons">
-                                    <div className="social-icon">
-                                        <Facebook size={20} />
-                                    </div>
-                                    <div className="social-icon">
-                                        <Twitter size={20} />
-                                    </div>
-                                    <div className="social-icon">
-                                        <Linkedin size={20} />
-                                    </div>
-                                </div>
 
                                 <div className="experience-section">
-                                    <h3>Mr. Rajesh Sadhwani </h3>
+                                    <h3>Mr. Rajeyssh Saddhwani </h3>
                                     <div className='experience-section-subtitle'>Under his leadership:</div>
                                     <div className="experience-points">
                                         <div className="experience-point">
@@ -145,39 +130,42 @@ export default function Team() {
                                 <p className="board-description">
                                     Experienced Minds, Strategic Decisions, Strong Leadership.
                                 </p>
-
                             </div>
 
-                            <div className="team-grid">
-                                {teamMembers.map((member) => (
-                                    <div data-aos="fade-zoom-in"
-                                        className="team-card">
-                                        <div className={`team-image-container ${member.bgColor}`}>
-                                            <div className="position-badge">{member.position}</div>
-                                            <img src={member.image} alt={member.name} className="team-image" />
-                                        </div>
-                                        <div className="team-info">
-                                            <h3 className="team-name">{member.name}</h3>
-                                            <p className="team-description">{member.description}</p>
-                                            <div className="team-social-icons">
-                                                <div className="social-icons">
-                                                    <div className="social-icon">
-                                                        <Facebook size={20} />
-                                                    </div>
-                                                    <div className="social-icon">
-                                                        <Twitter size={20} />
-                                                    </div>
-                                                    <div className="social-icon">
-                                                        <Linkedin size={20} />
-                                                    </div>
-                                                    <div className="social-icon">
-                                                        <FaInstagram size={20} />
-                                                    </div>
-                                                </div>
+                            {/* Managers Section */}
+                            <div className="department-section">
+                                <h3 className="department-heading">Managers</h3>
+                                <div className="managers-grid">
+                                    {managers.map((member) => (
+                                        <div key={member.id} data-aos="fade-zoom-in" className="team-card">
+                                            <div className={`team-image-container ${member.bgColor}`}>
+                                                <img src={member.image} alt={member.name} className="team-image" />
+                                            </div>
+                                            <div className="team-info">
+                                                <h3 className="team-name">{member.name}</h3>
+                                                <p className="team-description">{member.description}</p>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Sales Team Section */}
+                            <div className="department-section">
+                                <h3 className="department-heading">Sales</h3>
+                                <div className="team-grid">
+                                    {salesTeam.map((member) => (
+                                        <div key={member.id} data-aos="fade-zoom-in" className="team-card">
+                                            <div className={`team-image-container ${member.bgColor}`}>
+                                                <img src={member.image} alt={member.name} className="team-image" />
+                                            </div>
+                                            <div className="team-info">
+                                                <h3 className="team-name">{member.name}</h3>
+                                                <p className="team-description">{member.description}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -92,7 +92,6 @@ export default function Product() {
             return imagePath;
         }
 
-
         const cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
         return `${API_BASE_URL}/${cleanPath}`;
     };

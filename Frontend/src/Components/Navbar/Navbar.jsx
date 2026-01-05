@@ -165,10 +165,10 @@ const Navbar = () => {
                 <div className='navbar-list'>
                   <ul>
                     <li className="active"><a href="/">Home</a></li>
-                    <li><a href="/About">About</a></li>
-                    <li><a href="/Product">Products</a></li>
-                    <li><a href="/Team">Team</a></li>
-                    <li><a href="/Contact">Contact Us</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/product">Products</a></li>
+                    <li><a href="/team">Team</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
                   </ul>
                 </div>
               </div>
