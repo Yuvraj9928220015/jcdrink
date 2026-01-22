@@ -27,7 +27,7 @@ const priceVariationSchema = new mongoose.Schema({
         required: true,
         min: 0
     }
-});
+}, { _id: false }); // ✅ Disable _id for subdocuments
 
 // Main Product Schema
 const productSchema = new mongoose.Schema({
@@ -35,6 +35,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please add a title'],
         trim: true
+    },
+    subtitle: {
+        type: String,
+        required: true,
+        trim: true,
+        default: '' // ✅ Explicitly set default to empty string
     },
     description: {
         type: String,
@@ -59,18 +65,44 @@ const productSchema = new mongoose.Schema({
         required: [true, 'Please add an image']
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    // ✅ CRITICAL: Ensure subtitle is included in JSON responses
+    toJSON: {
+        virtuals: true,
+        transform: function (doc, ret) {
+            // Ensure subtitle is always present, even if empty
+            if (ret.subtitle === undefined || ret.subtitle === null) {
+                ret.subtitle = '';
+            }
+            return ret;
+        }
+    },
+    toObject: {
+        virtuals: true,
+        transform: function (doc, ret) {
+            // Ensure subtitle is always present, even if empty
+            if (ret.subtitle === undefined || ret.subtitle === null) {
+                ret.subtitle = '';
+            }
+            return ret;
+        }
+    }
 });
 
 // Middleware to validate unique sizes before saving
-productSchema.pre('save', function(next) {
+productSchema.pre('save', function (next) {
     const sizes = this.priceVariations.map(v => v.size);
     const uniqueSizes = new Set(sizes);
-    
+
     if (sizes.length !== uniqueSizes.size) {
         return next(new Error('Duplicate sizes are not allowed'));
     }
-    
+
+    // ✅ Ensure subtitle is always a string, never undefined/null
+    if (this.subtitle === undefined || this.subtitle === null) {
+        this.subtitle = '';
+    }
+
     next();
 });
 
@@ -85,10 +117,6 @@ productSchema.virtual('priceRange').get(function () {
         max: Math.max(...prices)
     };
 });
-
-// Include virtual fields in JSON & object responses
-productSchema.set('toJSON', { virtuals: true });
-productSchema.set('toObject', { virtuals: true });
 
 // Log valid sizes when model loads (for debugging)
 console.log('✅ Product Model Loaded');
