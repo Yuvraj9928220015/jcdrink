@@ -17,6 +17,8 @@ app.use(cors({
         'http://localhost:5173',
         'http://localhost:5174',
         'http://localhost:3000',
+        'https://jcdrink.com',           // ✅ Yeh add karo
+        'https://www.jcdrink.com'        // ✅ Yeh bhi add karo
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
