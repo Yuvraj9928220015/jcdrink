@@ -7,7 +7,7 @@ const createSlug = (name) =>
   name.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-");
 
 async function run() {
-  await mongoose.connect(MONGO_URI);
+  await mongoose.connect(MONGO_URL);
 
   const products = await Product.find();
 
