@@ -256,7 +256,7 @@
     background: linear-gradient(135deg, #faf5fff2 0%, #f3e8fff2 100%);
 }
 
-.card-content {
+.QR-card-content {
     display: flex;
     align-items: start;
     gap: 16px;

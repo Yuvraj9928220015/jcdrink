@@ -154,7 +154,7 @@ export default function Product() {
     return (
         <>
             <Helmet>
-                <title>JC Drink Products – Premium Cold Drink</title>
+                <title>JC Drink Energy Drink | Fuel Your Energy</title>
                 <meta
                     name="description"
                     content="Explore JC Drink’s premium range of cold drinks, fruit beverages, and refreshing natural flavors made with pure ingredients. Enjoy delicious taste and true refreshment."

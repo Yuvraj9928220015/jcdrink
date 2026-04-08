@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
 
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }, [cartItems]);

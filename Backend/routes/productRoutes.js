@@ -1,4 +1,5 @@
 // routes/productRoutes.js
+const Product = require('../models/productModel');
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
@@ -14,6 +15,20 @@ const storage = multer.diskStorage({
     destination: './uploads/',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+router.get("/product/:slug", async (req, res) => {
+    try {
+        const product = await Product.findOne({ slug: req.params.slug });
+
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 });
 

@@ -95,7 +95,7 @@ export default function QRPage() {
               <div className="info-grid">
                 {/* Location Card */}
                 <div className="info-card location-card">
-                  <div className="card-content">
+                  <div className="QR-card-content">
                     <span className="card-icon">📍</span>
                     <div className="card-text">
                       <h3>Location</h3>
@@ -106,7 +106,7 @@ export default function QRPage() {
 
                 {/* Contact Card */}
                 <div className="info-card contact-card">
-                  <div className="card-content">
+                  <div className="QR-card-content">
                     <span className="card-icon">📞</span>
                     <div className="card-text">
                       <h3>Contact</h3>
@@ -117,7 +117,7 @@ export default function QRPage() {
 
                 {/* Website Card */}
                 <div className="info-card website-card">
-                  <div className="card-content">
+                  <div className="QR-card-content">
                     <span className="card-icon">🌐</span>
                     <div className="card-text">
                       <h3>Website</h3>

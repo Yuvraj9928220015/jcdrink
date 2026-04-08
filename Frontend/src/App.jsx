@@ -16,6 +16,7 @@ import CheckoutForm from "./Components/Pages/Cart/CheckoutForm";
 import Privacy from "./Components/Privacy/Privacy";
 import ProductDetail from "./Components/Pages/Product/ProductDetail";
 import QRPage from "./Components/Pages/QRPage/QRPage";
+import JCInsta from "./Components/Pages/QRPage/JCInsta";
 
 function Layout() {
   const location = useLocation();
@@ -51,8 +52,9 @@ function Layout() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/QRPage" element={<QRPage />} />
+        <Route path="/JCInsta" element={<JCInsta />} />
       </Routes>
-      
+
       {!shouldHideNavFooter && <Footer />}
     </>
   );

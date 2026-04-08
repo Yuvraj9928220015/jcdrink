@@ -1,14 +1,10 @@
-
-// src/App.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProductData.css';
 
-// Fixed API URL
 const API_BASE_URL = 'https://api.jcdrink.com';
 const API_URL = `${API_BASE_URL}/api`;
 
-// Updated available sizes with unique identifiers
 const AVAILABLE_SIZES = [
     '100 ML',
     '160 ML',
@@ -35,6 +31,7 @@ export default function ProductData() {
     const [currentProduct, setCurrentProduct] = useState({
         id: null,
         title: '',
+        subtitle: '',
         description: '',
         category: '',
         priceVariations: [{ size: '100 ML', price: '' }],
@@ -101,25 +98,19 @@ export default function ProductData() {
     const fetchProducts = async () => {
         try {
             const response = await axios.get(`${API_URL}/products`);
+            console.log('📥 Fetched products:', response.data);
             setProducts(response.data);
         } catch (error) {
             console.error("Error fetching products:", error);
         }
     };
 
-    // Function to get correct image URL
     const getImageUrl = (imagePath) => {
         if (!imagePath) return '';
-
-        // Remove leading slashes and backslashes
         let cleanPath = imagePath.replace(/\\/g, '/').replace(/^\/+/, '');
-
-        // If already a full URL, return as is
         if (cleanPath.startsWith('http')) {
             return cleanPath;
         }
-
-        // Return full URL with API base
         return `${API_BASE_URL}/${cleanPath}`;
     };
 
@@ -164,7 +155,6 @@ export default function ProductData() {
             return;
         }
 
-        // Validation: Check for duplicate sizes
         const sizes = currentProduct.priceVariations.map(v => v.size);
         const uniqueSizes = new Set(sizes);
         if (sizes.length !== uniqueSizes.size) {
@@ -174,6 +164,7 @@ export default function ProductData() {
 
         const formData = new FormData();
         formData.append('title', currentProduct.title);
+        formData.append('subtitle', currentProduct.subtitle || '');
         formData.append('description', currentProduct.description);
         formData.append('category', currentProduct.category);
         formData.append('priceVariations', JSON.stringify(currentProduct.priceVariations));
@@ -182,30 +173,43 @@ export default function ProductData() {
             formData.append('image', currentProduct.image);
         }
 
+        console.log('📤 Sending data:', {
+            title: currentProduct.title,
+            subtitle: currentProduct.subtitle,
+            description: currentProduct.description,
+            category: currentProduct.category,
+            priceVariations: currentProduct.priceVariations,
+            hasImage: !!currentProduct.image
+        });
+
         try {
             if (isEditing) {
-                await axios.put(`${API_URL}/products/${currentProduct.id}`, formData, {
+                const response = await axios.put(`${API_URL}/products/${currentProduct.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
+                console.log('✅ Update response:', response.data);
             } else {
-                await axios.post(`${API_URL}/products`, formData, {
+                const response = await axios.post(`${API_URL}/products`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
+                console.log('✅ Create response:', response.data);
             }
             resetForm();
             fetchProducts();
         } catch (error) {
-            console.error("Error saving product:", error.response ? error.response.data : error.message);
+            console.error("❌ Error saving product:", error.response ? error.response.data : error.message);
             alert('Error saving product. Please try again.');
         }
     };
 
     const handleEdit = (product) => {
+        console.log('✏️ Editing product:', product);
         setIsEditing(true);
         setShowForm(true);
         setCurrentProduct({
             id: product._id,
             title: product.title,
+            subtitle: product.subtitle || '',
             description: product.description,
             category: product.category,
             priceVariations: product.priceVariations && product.priceVariations.length > 0
@@ -232,6 +236,7 @@ export default function ProductData() {
         setCurrentProduct({
             id: null,
             title: '',
+            subtitle: '',
             description: '',
             category: '',
             priceVariations: [{ size: '100 ML', price: '' }],
@@ -249,6 +254,7 @@ export default function ProductData() {
     };
 
     const handleProductClick = (product) => {
+        console.log('🔍 Selected product:', product);
         setSelectedProduct(product);
         setSelectedSize(product.priceVariations?.[0]?.size || '');
         setShowProductModal(true);
@@ -287,7 +293,6 @@ export default function ProductData() {
         return AVAILABLE_SIZES.filter(size => !usedSizes.includes(size));
     };
 
-    // Login Form Component
     if (!isAuthenticated) {
         return (
             <div className="login-container">
@@ -365,11 +370,9 @@ export default function ProductData() {
         );
     }
 
-    // Main Product Dashboard
     return (
         <>
             <div className="ProductData">
-                {/* Header */}
                 <header className="ProductData-header">
                     <div className="">
                         <div className="header-content">
@@ -390,7 +393,6 @@ export default function ProductData() {
                 </header>
 
                 <div className="ProductData-continer">
-                    {/* Add Product Button */}
                     <button onClick={openAddForm} className="add-product-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M12 5v14M5 12h14" />
@@ -398,7 +400,6 @@ export default function ProductData() {
                         Add New Product
                     </button>
 
-                    {/* Modal for Add/Edit Form */}
                     <div className={`modal-overlay ${!showForm ? 'hidden' : ''}`}>
                         <div className="modal-content form-modal">
                             <div className="modal-header">
@@ -427,6 +428,23 @@ export default function ProductData() {
                                         onChange={handleInputChange}
                                         required
                                     />
+                                </div>
+
+                                <div className="form-group">
+                                    <label className="form-label">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M4 7h16M4 12h16M4 17h10" />
+                                        </svg>
+                                        Subtitle (Optional)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="subtitle"
+                                        placeholder="e.g., Refreshing Cola Drink, Ice Cold Refreshment"
+                                        value={currentProduct.subtitle}
+                                        onChange={handleInputChange}
+                                    />
+                                    <small className="form-hint">Add a catchy subtitle to describe your product</small>
                                 </div>
 
                                 <div className="form-group">
@@ -574,7 +592,6 @@ export default function ProductData() {
                         </div>
                     </div>
 
-                    {/* Product View Modal */}
                     <div className={`modal-overlay ${!showProductModal ? 'hidden' : ''}`}>
                         <div className="modal-content product-view-modal">
                             <div className="modal-header">
@@ -601,6 +618,10 @@ export default function ProductData() {
 
                                     <div className="product-info">
                                         <h3 className="productData-title">{selectedProduct.title}</h3>
+                                        {/* ✅ FIX: Display subtitle properly */}
+                                        {selectedProduct.subtitle && selectedProduct.subtitle.trim() !== '' && (
+                                            <p className="productData-subtitle">{selectedProduct.subtitle}</p>
+                                        )}
                                         <p className="productData-description">{selectedProduct.description}</p>
 
                                         <div className="size-selector">
@@ -624,7 +645,6 @@ export default function ProductData() {
                                         </div>
 
                                         <div className="product-price">₹ {getCurrentPrice().toFixed(2)}</div>
-                                        {/* Show all available sizes */}
                                         <div className="available-sizes">
                                             <p className="sizes-label">Available Sizes:</p>
                                             <div className="size-chips">
@@ -696,7 +716,11 @@ export default function ProductData() {
                                 </div>
                                 <div className="card-content">
                                     <h3>{product.title}</h3>
-                                    <p>{product.description}</p>
+                                    {/* ✅ FIX: Display subtitle in product cards */}
+                                    {product.subtitle && product.subtitle.trim() !== '' && (
+                                        <p className="card-subtitle">{product.subtitle}</p>
+                                    )}
+                                    <p className="card-description">{product.description}</p>
                                     <div className="price">{getPriceRange(product)}</div>
                                     <div className="sizes-available">
                                         {product.priceVariations?.length || 0} size{product.priceVariations?.length !== 1 ? 's' : ''} available

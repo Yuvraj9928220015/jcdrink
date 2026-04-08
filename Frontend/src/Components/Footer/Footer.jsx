@@ -96,7 +96,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <div className="footer-bottom-links">
-              <a href="" className="footer-bottom-link">copyright 2025. ALL rights Reserved</a>
+              <a href="" className="footer-bottom-link">copyright 2026. ALL rights Reserved</a>
             </div>
             <div className="footer-bottom-links">
               <a href="https://lensclickerdigital.com/" className="footer-bottom-link">Developed By lensclickerdigital.com</a>

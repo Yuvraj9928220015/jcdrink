@@ -47,7 +47,7 @@ export default function About() {
                                         satisfaction.
                                     </p>
                                     <p className="about-paragraph">
-                                        At Shree Balaji Foods, we specialize in creating beverages that blend traditional Indian
+                                        At <strong>Shree Balaji Foods,</strong> we specialize in creating beverages that blend traditional Indian
                                         flavors with modern processing techniques, ensuring both taste and safety in every bottle.
                                         Our commitment to hygiene, innovation, and affordability has helped us win hearts across the
                                         country from bustling cities to the smallest villages.

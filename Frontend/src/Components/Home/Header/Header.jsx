@@ -58,7 +58,7 @@ export default function Header() {
 
   return (
     <>
-      <div data-aos="fade-up" className="Header-slider-container">
+      <div className="Header-slider-container">
         <div className="Header-slider-wrapper">
           {slides.map((slide, index) => (
             <div

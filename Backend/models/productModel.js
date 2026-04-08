@@ -57,20 +57,24 @@ const productSchema = new mongoose.Schema({
     image: {
         type: String,
         required: [true, 'Please add an image']
-    }
+    },
+    slug: {
+        type: String,
+        unique: true
+    },
 }, {
     timestamps: true
 });
 
 // Middleware to validate unique sizes before saving
-productSchema.pre('save', function(next) {
+productSchema.pre('save', function (next) {
     const sizes = this.priceVariations.map(v => v.size);
     const uniqueSizes = new Set(sizes);
-    
+
     if (sizes.length !== uniqueSizes.size) {
         return next(new Error('Duplicate sizes are not allowed'));
     }
-    
+
     next();
 });
 

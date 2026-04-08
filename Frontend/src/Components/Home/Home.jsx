@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <>
             <Helmet>
-                <title>JC Drink – Premium Cold Drinks</title>
+                <title>JC Drink Energy Drink | Fuel Your Energy</title>
                 <meta
                     name="description"
                     content="JC Drink offers premium cold drinks, fruit beverages, and refreshing flavors made with pure ingredients. Explore our delicious range crafted for true refreshment."

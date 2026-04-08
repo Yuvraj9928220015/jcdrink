@@ -9,17 +9,17 @@ export default function Team() {
         {
             id: 1,
             name: "Mukul",
-            position: "General manager",
-            image: "/Mukul.png",
-            description: "General manager",
+            position: "General Manager",
+            image: "/Mukul.webp",
+            description: "General Manager",
             bgColor: "blue"
         },
         {
             id: 3,
-            name: "Manish sharma",
-            position: "Human Resources manager",
-            image: "/Manish-sharma.png",
-            description: "Human Resources manager",
+            name: "Manish Sharma",
+            position: "Human Resources Manager",
+            image: "/Manish-sharma.webp",
+            description: "Human Resources Manager",
             bgColor: "green"
         },
     ];
@@ -27,27 +27,27 @@ export default function Team() {
     // Sales Team
     const salesTeam = [
         {
-            id: 4,
-            name: "Ashraf khan",
-            position: "Sales head south zone",
-            image: "/Ashraf-khan.png",
-            description: "Sales head south zone",
-            bgColor: "blue"
+            id: 5,
+            name: "Pankaj Kumar Sharma",
+            position: "Sales Head North Zone",
+            image: "/Pankaj-sharma.webp",
+            description: "Sales Head North Zone",
+            bgColor: "pink"
         },
         {
-            id: 5,
-            name: "Pankaj kumar sharma",
-            position: "Sales head north zone",
-            image: "/Pankaj-sharma.png",
-            description: "Sales head north zone",
-            bgColor: "pink"
+            id: 4,
+            name: "Ashraf Khan",
+            position: "Sales Head South Zone",
+            image: "/Ashraf-khan.webp",
+            description: "Sales Head South Zone",
+            bgColor: "blue"
         },
         {
             id: 6,
             name: "Naresh Jurani",
-            position: "Sales head centre zone",
-            image: "/Naresh-Jurani.png",
-            description: "Sales head centre zone",
+            position: "Sales Head Centre Zone",
+            image: "/Naresh-Jurani.webp",
+            description: "Sales Head Centre Zone",
             bgColor: "green"
         }
     ];
@@ -70,7 +70,7 @@ export default function Team() {
                         <div className="section-header">
                             <h1 className="Team-heading">Our Team</h1>
                             <p className="Team-section-description">
-                                Meet the minds behind our innovation and success.
+                                Meet The Minds Behind Our Innovation And Success.
                             </p>
                         </div>
 
@@ -134,7 +134,7 @@ export default function Team() {
 
                             {/* Managers Section */}
                             <div className="department-section">
-                                <h3 className="department-heading">Managers</h3>
+                                <h3 className="department-heading">Managers Team</h3>
                                 <div className="managers-grid">
                                     {managers.map((member) => (
                                         <div key={member.id} data-aos="fade-zoom-in" className="team-card">
@@ -152,7 +152,7 @@ export default function Team() {
 
                             {/* Sales Team Section */}
                             <div className="department-section">
-                                <h3 className="department-heading">Sales</h3>
+                                <h3 className="department-heading">Sales Team</h3>
                                 <div className="team-grid">
                                     {salesTeam.map((member) => (
                                         <div key={member.id} data-aos="fade-zoom-in" className="team-card">
