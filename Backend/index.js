@@ -8,13 +8,14 @@ const nodemailer = require('nodemailer');
 const productRoutes = require('./routes/productRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const authRoutes = require('./routes/authRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 dotenv.config();
 const app = express();
 
 app.use(cors({
     origin: [
-        'http://localhost:5173',
+        'https://api.jcdrink.com',
         'http://localhost:5174',
         'http://localhost:3000',
         'https://jcdrink.com',
@@ -37,7 +38,7 @@ console.log("Email User from .env:", process.env.EMAIL_USER);
 console.log("Email Pass from .env exists:", !!process.env.EMAIL_PASS);
 
 mongoose.connect(MONGO_URL)
-    .then(() => console.log("✅ Mongoose Connected to MongoDB"))
+    .then(() => console.log(" Mongoose Connected to MongoDB"))
     .catch(error => console.error("❌ Database Connection Error:", error));
 
 const transporter = nodemailer.createTransport({
@@ -53,7 +54,7 @@ app.get('/', (req, res) => res.send('API is running...'));
 
 // Add auth routes
 app.use('/api/auth', authRoutes);
-
+app.use('/api/blogs', blogRoutes);
 app.use('/api/products', productRoutes);
 
 app.use('/api/payment', paymentRoutes);
