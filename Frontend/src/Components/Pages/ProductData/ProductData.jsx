@@ -187,12 +187,12 @@ export default function ProductData() {
                 const response = await axios.put(`${API_URL}/products/${currentProduct.id}`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
-                console.log('✅ Update response:', response.data);
+                console.log(' Update response:', response.data);
             } else {
                 const response = await axios.post(`${API_URL}/products`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
-                console.log('✅ Create response:', response.data);
+                console.log(' Create response:', response.data);
             }
             resetForm();
             fetchProducts();
@@ -618,7 +618,7 @@ export default function ProductData() {
 
                                     <div className="product-info">
                                         <h3 className="productData-title">{selectedProduct.title}</h3>
-                                        {/* ✅ FIX: Display subtitle properly */}
+                                        {/* FIX: Display subtitle properly */}
                                         {selectedProduct.subtitle && selectedProduct.subtitle.trim() !== '' && (
                                             <p className="productData-subtitle">{selectedProduct.subtitle}</p>
                                         )}

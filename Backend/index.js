@@ -18,6 +18,7 @@ app.use(cors({
         'https://api.jcdrink.com',
         'http://localhost:5174',
         'http://localhost:3000',
+        'http://localhost:3001',
         'https://jcdrink.com',
         'https://www.jcdrink.com',
         'https://zinniezeera.com',

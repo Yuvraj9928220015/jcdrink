@@ -1,5 +1,20 @@
 const Blog = require('../models/Blog');
 
+// UPLOAD IMAGE (MDX editor ke andar inline images ke liye)
+exports.uploadImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No image file uploaded' });
+    }
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const url = `${baseUrl}/uploads/${req.file.filename}`;
+    res.status(200).json({ success: true, url });
+  } catch (error) {
+    console.error('Upload Image Error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 // CREATE
 exports.createBlog = async (req, res) => {
   try {
@@ -23,10 +38,13 @@ exports.createBlog = async (req, res) => {
 // GET ALL
 exports.getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
+    const blogs = await Blog.find()
+     .select('-content -script')
+      .sort({ createdAt: -1 });
     res.status(200).json(blogs);
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Error fetching blogs' });
+    console.error('❌ Get Blogs Error:', error);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

@@ -8,6 +8,7 @@ const {
   getBlogBySlug,
   updateBlog,
   deleteBlog,
+  uploadImage,
 } = require('../controllers/blogController');
 
 const storage = multer.diskStorage({
@@ -17,16 +18,16 @@ const storage = multer.diskStorage({
   },
 });
 
-// Field size limit badhaya - 50MB taaki bada blog content (HTML) fit ho sake
+
 const upload = multer({
   storage,
   limits: {
-    fieldSize: 50 * 1024 * 1024, // 50MB per text field (content ke liye)
-    fileSize: 10 * 1024 * 1024,  // 10MB per image file
+    fieldSize: 50 * 1024 * 1024, 
+    fileSize: 10 * 1024 * 1024,  
   },
 });
 
-// Helper: multer errors ko bhi hamesha JSON me bhejein, HTML page nahi
+
 function handleUpload(uploadMiddleware) {
   return (req, res, next) => {
     uploadMiddleware(req, res, (err) => {
@@ -39,6 +40,7 @@ function handleUpload(uploadMiddleware) {
   };
 }
 
+router.post('/upload-image', handleUpload(upload.single('image')), uploadImage);
 router.post('/', handleUpload(upload.single('image')), createBlog);
 router.get('/', getBlogs);
 router.get('/:slug', getBlogBySlug);
