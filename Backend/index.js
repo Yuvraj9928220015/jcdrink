@@ -9,6 +9,8 @@ const productRoutes = require('./routes/productRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const authRoutes = require('./routes/authRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+const contactRoutes = require("./routes/contactRoutes");
+const distributorRoutes = require("./routes/distributorRoutes");
 
 dotenv.config();
 const app = express();
@@ -19,6 +21,7 @@ app.use(cors({
         'http://localhost:5174',
         'http://localhost:3000',
         'http://localhost:3001',
+        'http://localhost:3002',
         'https://jcdrink.com',
         'https://www.jcdrink.com',
         'https://zinniezeera.com',
@@ -57,8 +60,9 @@ app.get('/', (req, res) => res.send('API is running...'));
 app.use('/api/auth', authRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/products', productRoutes);
-
+app.use("/api/contact", contactRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use("/api/distributor", distributorRoutes );
 
 const checkoutRoutes = require('./routes/checkout');
 app.use('/api/checkout', checkoutRoutes);

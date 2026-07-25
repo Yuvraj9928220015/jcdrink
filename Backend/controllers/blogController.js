@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Blog = require('../models/Blog');
 
 // UPLOAD IMAGE (MDX editor ke andar inline images ke liye)
@@ -38,9 +39,19 @@ exports.createBlog = async (req, res) => {
 // GET ALL
 exports.getBlogs = async (req, res) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      console.error('getBlogs called but Mongo readyState =', mongoose.connection.readyState);
+      return res.status(503).json({
+        success: false,
+        message: 'Database connection not ready, thodi der me try karein',
+      });
+    }
+
     const blogs = await Blog.find()
-     .select('-content -script')
-      .sort({ createdAt: -1 });
+      .select('-content -script')
+      .sort({ createdAt: -1 })
+      .lean();
+
     res.status(200).json(blogs);
   } catch (error) {
     console.error('❌ Get Blogs Error:', error);
